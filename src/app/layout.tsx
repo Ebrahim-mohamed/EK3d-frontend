@@ -5,8 +5,8 @@ import RootLayoutClient from "./RootLayout";
 import { NextIntlClientProvider } from "next-intl";
 
 export const metadata: Metadata = {
-  title: "Egy Smart",
-  description: "Building The Future With Precision",
+  title: "EK3dPrints",
+  description: "3d prints",
 };
 
 export default function RootLayout({

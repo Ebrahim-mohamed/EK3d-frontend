@@ -20,7 +20,7 @@ export function Header() {
     <div className="py-6 px-14 max-[600px]:px-6 flex items-center justify-between absolute top-0 left-0 w-full z-50">
       <Link href={"/"}>
         <Image
-          className="w-[12.9rem] aspect-69/16"
+          className="w-[12.9rem]"
           src="/logo.png"
           alt="logo"
           width={300}
