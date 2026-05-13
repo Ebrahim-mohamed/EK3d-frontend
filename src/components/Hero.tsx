@@ -38,7 +38,7 @@ export function Hero({
       )} */}
 
       {/* Radial gradient overlay */}
-      {page === "home" && (
+      
         <div
           className="absolute inset-0 z-[1] pointer-events-none"
           style={{
@@ -46,7 +46,7 @@ export function Hero({
               "radial-gradient(50% 50% at 50% 50%, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.80) 100%)",
           }}
         />
-      )}
+      
 
       {/* Content */}
       {/* {page === "home" && (

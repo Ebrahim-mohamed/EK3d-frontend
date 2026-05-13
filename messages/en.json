@@ -19,5 +19,33 @@
       "field6":"Tourism: Landmarks Models – Gates – Giveaways & Souvenirs",
       "field7":"Arts: Contemporary Sculpture – Conceptual Art - Mixed Media & Interactive Art"
     }
+  },
+  "CollaborationPage":{
+    "title":"Our Collaboration Programs",
+    "SmallTitle":"Collaboration Programs",
+    "programOptions":"Program Options:",
+    "programOneTitle":"3D Printing House",
+    "programOnePra":"We offer customized collaboration programs for 3D Printing Houses and creative studios, designed to expand production capabilities without additional operational costs. Our partnership model provides flexible pricing, scalable production, and fast turnaround times tailored to your business needs.",
+    "programOneOption1":"Fibers providing",
+    "programOneOption2":"3D Printers Providing",
+    "programOneOption3":"Maintenance",
+    "programOneOption4":"Flexible Pricing",
+    "programOneOption5":"Scalable Production",
+    "programTwoTitle":"Monthly Contract - Piece-Based Production Contract",
+    "programTwoPra":"A flexible collaboration model where pricing is calculated per printed piece. maintaining full cost transparency and predictable budgeting",
+    "programTwoOption1":"Design",
+    "programTwoOption2":"Scan",
+    "programTwoOption3":"Production",
+    "programTwoOption4":"Different payment options",
+    "programTwoOption5":"Discounts for large scale projects",
+    "programThreeTitle":"Single Product / One-time order",
+    "programThreePra":"Order what you need. We can Provide.",
+    "programThreeOption1":"Design",
+    "programThreeOption2":"Scan",
+    "programThreeOption3":"Production",
+    "programThreeOption4":"Different payment options",
+    "programFourTitle":"Customized Program",
+    "programFourPra":"Customize Your own program, contact us"
+    
   }
 }

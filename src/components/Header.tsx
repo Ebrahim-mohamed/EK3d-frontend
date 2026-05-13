@@ -7,7 +7,7 @@ const links = [
   { name: "Home", to: "" },
   { name: "Services", to: "services" },
   { name: "About Us", to: "about" },
-  { name: "Egy Smart Community", to: "community" },
+  { name: "Collaboration Programs", to: "collaboration" },
   { name: "Subsidiary", to: "subsidiary" },
   { name: "Contact us", to: "contact" },
 ];
