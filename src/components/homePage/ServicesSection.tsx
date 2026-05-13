@@ -1,29 +1,9 @@
 import Link from "next/link";
 import { MostTextPattern } from "../MostTextPattern";
 import { ServiceBox } from "./ServiceBox";
-const servicesAbove = [
-  {
-    title: "Turnkey Projects",
-    pra: (
-      <span>
-        End to end execution from concept to reality, we handle every phase{" "}
-        <br /> with unified responsibility
-      </span>
-    ),
-    link: "services/#turnkeyProjects",
-    img: "turnkeyProjects",
-    class:
-      " min-h-[35rem] w-[65%] max-[900px]:w-full max-[900px]:min-h-[25rem] ",
-  },
-  {
-    title: "Concrete Flooring",
-    pra: "EGY SMART specializes in all aspects of concrete flooring, expertly catering to both indoor and outdoor applications.",
-    link: "services/#concreteFlooring",
-    img: "concreteFlooring",
-    class: " min-h-[35rem] flex-1 max-[900px]:min-h-[25rem] ",
-  },
-];
+import { useTranslations } from "next-intl";
 export function ServicesSection() {
+  const ts=useTranslations("HomePage.services")
   return (
     <div className="p-[var(--sectionPadding)] bg-[#0A0A0A] ">
       <div className="flex items-center justify-between gap-14 mb-14 max-[700px]:flex-col max-[700px]:items-start">
@@ -46,30 +26,15 @@ export function ServicesSection() {
         </div>
       </div>
       <div className="flex flex-col gap-4 w-full">
-        <div className="flex gap-4 max-[900px]:flex-col">
-          {servicesAbove.map((ser) => (
-            <ServiceBox
-              classes={ser.class}
-              img={ser.img}
-              link={ser.link}
-              title={ser.title}
-              pra={ser.pra}
-              key={ser.title}
-            />
-          ))}
+        <div className="grid grid-cols-2 gap-4 ">
+          {Array.from({ length: 5 }).map((_, i) => (
+  <ServiceBox
+    img={`serv${i}`}
+    title={ts(`serv${i}`)}
+    key={i}
+  />
+))}
         </div>
-        <ServiceBox
-          title="Protective Coating"
-          pra={
-            <span>
-              EGYSMART delivers advanced epoxy coating systems designed for
-              <br /> maximum protection across all sectors.
-            </span>
-          }
-          img="protectiveCoating"
-          link="services/#protectiveCoating"
-          classes=" w-full min-h-[25rem] "
-        />
       </div>
     </div>
   );

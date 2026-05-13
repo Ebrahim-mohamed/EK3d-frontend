@@ -1,5 +1,23 @@
 {
   "HomePage": {
-    "title": "Hello world!"
+    "title": "Advanced 3D Printing Solutions & Exceptional 3D-Printed Products",
+    "about":"From industrial 3D printing solutions to exceptional on-demand creations, we bring your ideas to life.",
+    "services":{
+      "serv0":"3D printers",
+      "serv1":"3D toolkits",
+      "serv2":"3D design",
+      "serv3":"3D scanning",
+      "serv4":"3D printing "
+    },
+    "fields":{
+      "field0":"Interior Design & Decoration: Vases – Sculptures – Wall Art – Spotlights - Furniture Accessories - Decor Elements - Partitions & Screens - Custom interior pieces made on-demand",
+      "field1":"Media Production: MOCA-Rig – Props - Sets & Scenery – Maintenance",
+      "field2":"Manufacturing: Spare Parts - Jigs & Fixtures – Prototyping - End-use parts - Custom machine parts",
+      "field3":"Gadgets: Smart solutions for daily life",
+      "field4":"Event Organizing: Branding Elements – Props – Stands & Displays – Giveaways – Awards & Trophies – Boothes & Decorations – Interactive Elements – customized products",
+      "field5":"Advertising: Branding & Visual Identity – Campaign displays – Props – Outdoor & Indoor Decoration – Giveaways & Merch – Mockups & Prototypes",
+      "field6":"Tourism: Landmarks Models – Gates – Giveaways & Souvenirs",
+      "field7":"Arts: Contemporary Sculpture – Conceptual Art - Mixed Media & Interactive Art"
+    }
   }
 }

@@ -1,27 +1,23 @@
+import Image from "next/image";
 import { MostTextPattern } from "../MostTextPattern";
+import { useTranslations } from "next-intl";
 
 export function WhoSection() {
+const t=useTranslations("HomePage")
   return (
     <div
       className="flex items-start justify-between gap-10 p-[var(--sectionPadding)] max-[650px]:flex-col"
       id="first"
     >
       <div className="w-[60%] max-[650px]:w-full">
-        <MostTextPattern
-          blueText="Safe Projects On Time."
-          redText="Who We Are"
-          whiteText="Uncompromising Excellence In Every Detail "
-          pra="We are dedicated to making a meaningful impact in construction with integrity, performance, and customer satisfaction at our core. "
-        />
+        <p
+            className={`text-white text-[3.5rem] max-[1000px]:text-[2rem] max-[800px]:text-[1.5rem] font-medium `}
+          >
+            {t("about")}
+          </p>
       </div>
       <div>
-        <p className="text-[7.5rem] font-black text-[#277FCD]">2015</p>
-        <p className="text-[1.5rem] font-black text-[#BBC4D1] text-right max-[650px]:text-left">
-          Established in Egypt
-        </p>
-        <p className="text-[1rem] font-normal text-[#9EA8B7] text-right max-[650px]:text-left">
-          Building a legacy of trust and <br /> structural excellence
-        </p>
+        <Image width={500} height={500} src="/home/about.jpg" className="w-full" alt="about image"/>
       </div>
     </div>
   );

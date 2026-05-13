@@ -7,6 +7,7 @@ import { FeedbacksSection } from "@/components/homePage/FeedbacksSection";
 import { NewsSection } from "@/components/homePage/News";
 import { ProjectsSection } from "@/components/homePage/ProjectsSection";
 import { useTranslations } from "next-intl";
+import { FieldsSection } from "@/components/homePage/FieldsSection";
 
 export default function Home() {
   const t=useTranslations('HomePage')
@@ -24,6 +25,7 @@ export default function Home() {
       <WhoSection />
       {/* <NumbersSection /> */}
       <ServicesSection />
+      <FieldsSection />
       {/* <ClientsSection /> */}
       {/* <ProjectsSection /> */}
       {/* <NewsSection /> */}
