@@ -6,13 +6,15 @@ import { ClientsSection } from "@/components/ClientsSection";
 import { MilestonesSection } from "@/components/aboutPage/MilestonesSection";
 import { MindsSection } from "@/components/aboutPage/MindsSection";
 import { Hero } from "@/components/Hero";
+import { useTranslations } from "next-intl";
 
 export default function About() {
+  const t=useTranslations("whoWeAre")
   return (
     <div>
       <Hero
         page="about"
-        title="We Build Life"
+        title={t("title")}
         pra={
           <span>
             Our dedication is to deliver safe, innovative, and top-quality{" "}
@@ -24,9 +26,9 @@ export default function About() {
       <SecondSection />
       <ValuesSection />
       <VandMSection />
-      <MilestonesSection />
+      {/* <MilestonesSection />
       <MindsSection />
-      <ClientsSection />
+      <ClientsSection /> */}
     </div>
   );
 }

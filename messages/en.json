@@ -62,6 +62,12 @@
     "send":"Send Message"
   },
   "whoWeAre":{
-    "title":"Who we are "
-  }
+    "title":"Who we are",
+    "aboutPra":"As a leader in Egypt's 3D technology, we specialize in two interconnected pillars: advanced 3D printing solutions and exceptional 3D-printed products. We provide businesses and creators with the complete toolkit, from high-performance printers and tools to expert, on-demand manufacturing, ensuring quality and innovation at every layer.",
+  "value":"We deliver high-precision, customized 3D printing solutions that help businesses reduce time to market, optimize costs, and innovate with confidence across multiple industries.",
+  "mission":"Mission",
+  "missionContent":"To transform ideas into high-quality 3D-printed solutions by combining advanced technology, precision, and innovation to serve industrial, commercial, and creative needs.",
+"vision":"Vision",
+"visionContent":"To lead the transformation of traditional manufacturing into a smarter, faster, and more flexible future through 3D printing technology."
+}
 }
