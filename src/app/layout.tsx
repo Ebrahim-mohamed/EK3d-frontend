@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import RootLayoutClient from "./RootLayout";
+import { NextIntlClientProvider } from "next-intl";
 
 export const metadata: Metadata = {
   title: "Egy Smart",
@@ -16,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="relative">
-        <RootLayoutClient>{children}</RootLayoutClient>
+       {children}
       </body>
     </html>
   );
