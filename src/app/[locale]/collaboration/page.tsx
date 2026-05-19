@@ -11,7 +11,7 @@ export default function Collaboration() {
       <Hero
         page="collaboration"
         title={t("title")}
-        pra="Build Your Future with EGY Smart"
+        pra="Build Your Future with EK3DPrints"
       />
       {/* <JobsSection /> */}
       {/* <BlackSection /> */}

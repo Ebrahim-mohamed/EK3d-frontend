@@ -44,10 +44,10 @@ export function JobsSection() {
         isCenter
         moreWidth
         redText="Careers"
-        whiteText="Careers at EGY Smart"
+        whiteText="Careers at EK3DPrints"
         pra={
           <span>
-            At EGY Smart, you will work on impactful projects, collaborate with{" "}
+            At EK3DPrints, you will work on impactful projects, collaborate with{" "}
             <br />
             experienced professionals, and grow within a dynamic engineering{" "}
             <br />

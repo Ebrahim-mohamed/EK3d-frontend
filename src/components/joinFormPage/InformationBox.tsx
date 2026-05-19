@@ -32,7 +32,7 @@ export function InformationBox() {
           pra={
             <span>
               Our community and HR team carefully review your profile to assess
-              <br /> your skills, interests, and alignment with EGY Smart
+              <br /> your skills, interests, and alignment with EK3DPrints
               values.
             </span>
           }

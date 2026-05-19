@@ -46,7 +46,7 @@ export function FutureSection() {
           blueText="Layer by Layer."
           redText="OUR SERVICES"
           whiteText="Building the future,"
-          pra="EGY SMART provides comprehensive construction and renovation solutions, combining expert project management with specialized custom works and premium flooring systems. From protective coatings to full turnkey projects, we deliver end-to-end services that ensure structural excellence, innovative design, and flawless execution. Dedicated to safety, sustainability, and exceptional craftsmanship, we consistently achieve high-performance results that inspire confidence and guarantee complete client satisfaction."
+          pra="EK3DPrints provides comprehensive construction and renovation solutions, combining expert project management with specialized custom works and premium flooring systems. From protective coatings to full turnkey projects, we deliver end-to-end services that ensure structural excellence, innovative design, and flawless execution. Dedicated to safety, sustainability, and exceptional craftsmanship, we consistently achieve high-performance results that inspire confidence and guarantee complete client satisfaction."
         />
 
         <div className="w-full flex items-center justify-between gap-4 mt-8">

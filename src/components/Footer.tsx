@@ -6,7 +6,10 @@ import CompanyProfileForm from "./CompanyForm";
 const firstLinks = [
   { link: "Company", to: "community" },
   { link: "About Us", to: "about" },
-  { link: "News", to: "home/#news" },
+  { link: "Collaboration Programs", to: "collaboration" },
+  // { link: "Subsidiary", to: "subsidiary" },
+  { link: "Contact us", to: "contact" },
+  // { link: "News", to: "home/#news" },
 ];
 const secondLinks = [
   { link: "Services", to: "services" },
@@ -32,7 +35,7 @@ export function Footer() {
       <div className="flex items-center justify-between gap-6 max-[500px]:flex-col max-[500px]:items-start">
         <Link href="/" className="w-fit">
           <Image
-            className="w-[12.9rem] aspect-69/16"
+            className="w-[8rem] "
             src="/logo.png"
             alt="logo"
             width={300}
@@ -45,7 +48,7 @@ export function Footer() {
         <div className="flex flex-col gap-10">
           <div className="flex items-start justify-between  w-full max-[800px]:flex-col max-[800px]:gap-4 ">
             <p className="text-[1rem] font-[325] text-white max-[800px]:mb-6">
-              Egy Smart is specialized in modern engineering that focus <br />{" "}
+              EK3DPrints is specialized in modern engineering that focus <br />{" "}
               on analysis, design, and innovation of contemporary <br />{" "}
               construction, founded in 2015. <br /> Our team is committed to
               consistently deliver high-quality, <br /> innovative, safe
@@ -56,11 +59,11 @@ export function Footer() {
                 <FooterLink name={link.link} to={link.to} key={link.to} />
               ))}
             </div>
-            <div className="flex flex-col items-start justify-center gap-6 max-[800px]:gap-4">
+            {/* <div className="flex flex-col items-start justify-center gap-6 max-[800px]:gap-4">
               {secondLinks.map((link) => (
                 <FooterLink name={link.link} to={link.to} key={link.to} />
               ))}
-            </div>
+            </div> */}
             <div className="flex flex-col items-start justify-center gap-6 max-[800px]:gap-4">
               {thirdLinks.map((link) => (
                 <FooterLink name={link.link} to={link.to} key={link.to} />
@@ -74,7 +77,7 @@ export function Footer() {
           </div>
         </div>
         <p className="text-[1rem] font-[325] text-[#BBC4D1]">
-          ©2026 EgySmart. All rights reserved.
+          ©2026 EK3DPrints. All rights reserved.
         </p>
       </div>
     </div>

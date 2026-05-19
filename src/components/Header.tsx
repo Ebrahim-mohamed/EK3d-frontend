@@ -5,10 +5,10 @@ import { useState } from "react";
 
 const links = [
   { name: "Home", to: "" },
-  { name: "Services", to: "services" },
+  // { name: "Services", to: "services" },
   { name: "About Us", to: "about" },
-  { name: "Collaboration Programs", to: "collaboration" },
-  { name: "Subsidiary", to: "subsidiary" },
+  { name: "Collaborations", to: "collaboration" },
+  // { name: "Subsidiary", to: "subsidiary" },
   { name: "Contact us", to: "contact" },
 ];
 export function Header() {
@@ -20,7 +20,7 @@ export function Header() {
     <div className="py-6 px-14 max-[600px]:px-6 flex items-center justify-between absolute top-0 left-0 w-full z-50">
       <Link href={"/"}>
         <Image
-          className="w-[12.9rem]"
+          className="w-[8rem]"
           src="/logo.png"
           alt="logo"
           width={300}

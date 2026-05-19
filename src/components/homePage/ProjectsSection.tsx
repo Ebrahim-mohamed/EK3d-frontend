@@ -49,7 +49,7 @@ export function ProjectsSection() {
           redText="OUR PORTFOLIO"
           whiteText="Signature"
           blueText="Developments"
-          pra="Egy Smart provides comprehensive construction and renovation services, focusing on turn-key projects, specialized tasks, and cutting-edge engineering solutions."
+          pra="EK3DPrints provides comprehensive construction and renovation services, focusing on turn-key projects, specialized tasks, and cutting-edge engineering solutions."
         />
 
         <div className="flex items-end justify-center gap-4">
