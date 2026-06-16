@@ -9,6 +9,9 @@ const links = [
   { name: "About Us", to: "about" },
   { name: "Collaborations", to: "collaboration" },
   // { name: "Subsidiary", to: "subsidiary" },
+  { name: "Innovative Products", to: "innovative" },
+  { name: "Technology", to: "technology" },
+  
   { name: "Contact us", to: "contact" },
 ];
 export function Header() {

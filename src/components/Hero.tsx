@@ -12,7 +12,7 @@ export function Hero({
 }) {
   return (
     <div
-      className="relative p-[var(--section-padding)] w-dvw h-dvh flex items-center justify-center gap-4 text-white text-center flex-col bg-cover bg-no-repeat overflow-hidden"
+      className="relative p-[var(--section-padding)] w-dvw h-dvh flex items-center justify-center text-white text-center flex-col bg-cover bg-no-repeat overflow-hidden"
       style={
         
            { backgroundImage: `url(/${page}/hero.png)` }
@@ -55,7 +55,7 @@ export function Hero({
         </p>
       )} */}
 
-      <div className="relative z-10 font-black text-[5rem] max-[1200px]:text-[6.5rem] max-w-[85%] max-[600px]:text-[4.5rem] max-[900px]:text-[5.5rem] leading-[110%]">
+      <div className="relative z-10 font-black text-[4rem] max-[1200px]:text-[6.5rem] max-w-[85%] max-[600px]:text-[4.5rem] max-[900px]:text-[5.5rem] leading-[110%]">
         {title}
       </div>
 

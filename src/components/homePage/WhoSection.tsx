@@ -11,12 +11,12 @@ const t=useTranslations("HomePage")
     >
       <div className="w-[60%] max-[650px]:w-full">
         <p
-            className={`text-white text-[3.5rem] max-[1000px]:text-[2rem] max-[800px]:text-[1.5rem] font-medium `}
+            className={`text-white text-[2.5rem] max-[1000px]:text-[2rem] max-[800px]:text-[1.5rem] font-medium `}
           >
             {t("about")}
           </p>
       </div>
-      <div>
+      <div className="w-[30%]">
         <Image width={500} height={500} src="/home/about.jpg" className="w-full" alt="about image"/>
       </div>
     </div>

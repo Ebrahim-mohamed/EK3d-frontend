@@ -3,21 +3,39 @@
     "title": "Advanced 3D Printing Solutions & Exceptional 3D-Printed Products",
     "about":"From industrial 3D printing solutions to exceptional on-demand creations, we bring your ideas to life.",
     "services":{
+      "head":"Turning ideas into reality",
+      "smallHead":"Our services",
+      "des":"For us, 3D printing isn't just about production — it's about innovation. We bring integrity and creative excellence to every phase, from initial design to final realization ",
       "serv0":"3D printers",
+      "servCat0":"printers",
       "serv1":"3D toolkits",
+      "servCat1":"toolkits",
       "serv2":"3D design",
+      "servCat2":"design",
       "serv3":"3D scanning",
-      "serv4":"3D printing "
+      "servCat3":"scanning",
+      "serv4":"3D printing",
+      "servCat4":"printing"
     },
     "fields":{
-      "field0":"Interior Design & Decoration: Vases – Sculptures – Wall Art – Spotlights - Furniture Accessories - Decor Elements - Partitions & Screens - Custom interior pieces made on-demand",
-      "field1":"Media Production: MOCA-Rig – Props - Sets & Scenery – Maintenance",
-      "field2":"Manufacturing: Spare Parts - Jigs & Fixtures – Prototyping - End-use parts - Custom machine parts",
-      "field3":"Gadgets: Smart solutions for daily life",
-      "field4":"Event Organizing: Branding Elements – Props – Stands & Displays – Giveaways – Awards & Trophies – Boothes & Decorations – Interactive Elements – customized products",
-      "field5":"Advertising: Branding & Visual Identity – Campaign displays – Props – Outdoor & Indoor Decoration – Giveaways & Merch – Mockups & Prototypes",
-      "field6":"Tourism: Landmarks Models – Gates – Giveaways & Souvenirs",
-      "field7":"Arts: Contemporary Sculpture – Conceptual Art - Mixed Media & Interactive Art"
+      "smallHead":"OUR FIELDS",
+      "head":"3D printing is applicable to these fields",
+      "fHead0":"Interior Design & Decoration:",
+      "field0":"Discover custom-made pieces for media production and bring your unique ideas to life.",
+      "fHead1":"Media Production:",
+      "field1":"Transform your interiors with unique, one-of-a-kind designs that add style and personality to every space.",
+      "fHead2":"Manufacturing:",
+      "field2":"Spare Parts - Jigs & Fixtures – Prototyping - End-use parts - Custom machine parts",
+      "fHead3":"Gadgets:",
+      "field3":"Great events stand out through creativity and innovation. Create unique, custom-made pieces with us and give your event an experience that leaves a lasting impression.",
+      "fHead4":"Event Organizing:",
+      "field4":"We don't just create spare parts. We manufacture complete solutions, from simple components to fully assembled machines.",
+      "fHead5":"Advertising:",
+      "field5":"Trends come through creativity. Create unignorable and unforgettable advertising displays and promotional tools with us to make your brand stand out from the competition.",
+      "fHead6":"Tourism:",
+      "field6":"Create something worth sharing. Design unique attractions with us that draw attention, inspire photos, create unforgettable memories, and turn your brand into a social media trend.",
+      "fHead7":"Arts:",
+      "field7":"Art is limitless creativity. Bring your ideas to life with designs that turn imagination into reality."
     }
   },
   "CollaborationPage":{

@@ -6,25 +6,21 @@ export function FieldsSection() {
   const t=useTranslations("HomePage.fields")
   return (
     <div className="p-[var(--sectionPadding)] bg-[#0A0A0A] ">
-      <div className="flex items-center justify-between gap-14 mb-14 max-[700px]:flex-col max-[700px]:items-start">
+      
         <MostTextPattern
-          blueText="Layer by Layer."
-          redText="OUR EXPERTISE"
-          whiteText="Building the future,"
-        />
-        <div>
-          <p className="text-white text-[1rem] leading-[160%] font-normal mb-14">
-            We prioritize integrity and innovation in all aspects <br /> of our
-            work, ranging from design phase to full <br /> project execution
-          </p>
-        </div>
-      </div>
-      <div className="flex flex-col gap-4 w-full">
+        isCenter
+        moreWidth
+        redText={t("smallHead")}
+        whiteText={t("head")}
+      />
+      
+      <div className="flex flex-col gap-4 w-full mt-10">
         <div className="flex flex-col  gap-4 ">
           {Array.from({ length: 8 }).map((_, i) => (
   <FieldBox
+  head={t(`fHead${i}`)}
     img={`field${i}`}
-    name={t(`field${i}`)}
+    des={t(`field${i}`)}
     key={i}
     num={i}
   />
