@@ -25,16 +25,21 @@ export function ValuesSection() {
   return (
     <div className="p-[var(--sectionPadding)] bg-[url('/about/valuesBg.webp')] bg-cover bg-no-repeat ">
       <SecondTextPattern
-        redText="&#x2014; our values"
-        title={
-          <p className={`text-[4rem] font-[350] text-white `}>
-            What We <span className="text-[#277FCD]">Value</span> <br /> Most
-          </p>
-        }
-      />
+      redText={t("redText")}
+      title={
+        <p className="text-[4rem] font-[350] text-white">
+          {t("titleSec.before")}{" "}
+          <span className="text-[#277FCD]">
+            {t("titleSec.highlight")}
+          </span>{" "}
+          <br />
+          {t("titleSec.after")}
+        </p>
+      }
+    />
       <div className="flex items-center py-12 justify-center text-center text-[2rem] font-[350] text-white gap-4 max-[800px]:flex-col max-[800px]:w-full">
         
-          <ValueBox pra={t("value")} title={"value"}  />
+          <ValueBox pra={t("value")} title={t("valueSmall")} icon="value" />
         
       </div>
     </div>

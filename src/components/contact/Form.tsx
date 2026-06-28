@@ -2,27 +2,23 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useTranslations } from "next-intl";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "./Input";
 
-/* ======================
-   ZOD SCHEMA
-====================== */
-const formSchema = z.object({
-  name: z.string().min(2, "Name is required"),
-  email: z.string().email("Invalid email address"),
-  subject: z.string().min(3, "Subject is required"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
-  
-});
-
-type FormData = z.infer<typeof formSchema>;
-
-/* ======================
-   FORM COMPONENT
-====================== */
 export function Form() {
+  const t = useTranslations("ContactPage");
+
+  const formSchema = z.object({
+    name: z.string().min(2, t("validation.nameRequired")),
+    email: z.string().email(t("validation.emailInvalid")),
+    subject: z.string().min(3, t("validation.subjectRequired")),
+    message: z.string().min(10, t("validation.messageRequired")),
+  });
+
+  type FormData = z.infer<typeof formSchema>;
+
   const [status, setStatus] = useState<null | "success" | "error">(null);
   const [loading, setLoading] = useState(false);
 
@@ -31,26 +27,27 @@ export function Form() {
     handleSubmit,
     reset,
     formState: { errors },
-    setValue,
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
   });
 
   const onSubmit = async (data: FormData) => {
     setLoading(true);
+
     try {
       const res = await fetch("https://api.egysmart.org/api/contacts", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(data),
       });
 
-      if (!res.ok) throw new Error("Failed to submit form");
+      if (!res.ok) throw new Error();
 
       setStatus("success");
-      reset({ ...data, message: "" }); // keep userType selected
-    } catch (err) {
-      console.error(err);
+      reset({ ...data, message: "" });
+    } catch {
       setStatus("error");
     } finally {
       setLoading(false);
@@ -58,77 +55,46 @@ export function Form() {
   };
 
   return (
-    <div className="w-[45%] max-[900px]:w-[70%] max-[600px]:w-[90%] ">
-      {/* User Type Toggle */}
-      {/* <div className="flex mb-4">
-        <button
-          type="button"
-          className={`p-4 font-medium text-[1.25rem] ${
-            userType === "client"
-              ? "text-black bg-white"
-              : "text-white bg-[#277FCD26]"
-          }`}
-          onClick={() => {
-            setUserType("client");
-            setValue("userType", "client");
-          }}
-        >
-          I am a Client
-        </button>
-
-        <button
-          type="button"
-          className={`p-4 font-medium text-[1.25rem] ${
-            userType === "supplier"
-              ? "text-black bg-white"
-              : "text-white bg-[#277FCD26]"
-          }`}
-          onClick={() => {
-            setUserType("supplier");
-            setValue("userType", "supplier");
-          }}
-        >
-          I am a Supplier
-        </button>
-      </div> */}
-
-      {/* FORM */}
+    <div className="w-[45%] max-[900px]:w-[70%] max-[600px]:w-[90%]">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full flex flex-col gap-6 p-6"
       >
         <div>
           <p className="text-[0.8rem] text-[#FF383C] font-[350]">
-            Contact Us
+            {t("contactUs")}
           </p>
-          <p className="text-[2rem] text-white font-bold">Get In Touch</p>
+
+          <p className="text-[2rem] text-white font-bold">
+            {t("title")}
+          </p>
         </div>
 
         <Input
-          label="Full Name"
-          placeholder="Your name..."
+          label={t("labels.name")}
+          placeholder={t("placeholders.name")}
           error={errors.name?.message}
           {...register("name")}
         />
 
         <Input
-          label="E-mail"
-          placeholder="Your e-mail..."
+          label={t("labels.email")}
+          placeholder={t("placeholders.email")}
           type="email"
           error={errors.email?.message}
           {...register("email")}
         />
 
         <Input
-          label="Subject"
-          placeholder="Title..."
+          label={t("labels.subject")}
+          placeholder={t("placeholders.subject")}
           error={errors.subject?.message}
           {...register("subject")}
         />
 
         <Input
-          label="Message"
-          placeholder="Your message..."
+          label={t("labels.message")}
+          placeholder={t("placeholders.message")}
           isTextArea
           error={errors.message?.message}
           {...register("message")}
@@ -139,15 +105,18 @@ export function Form() {
           disabled={loading}
           className="bg-[#277FCD] text-white py-3 font-semibold disabled:opacity-50 cursor-pointer"
         >
-          {loading ? "Submitting..." : "Send Message"}
+          {loading ? t("buttons.loading") : t("buttons.submit")}
         </button>
 
         {status === "success" && (
-          <p className="text-green-400 mt-2">Message sent successfully!</p>
+          <p className="text-green-400 mt-2">
+            {t("success")}
+          </p>
         )}
+
         {status === "error" && (
           <p className="text-red-500 mt-2">
-            Something went wrong. Please try again.
+            {t("error")}
           </p>
         )}
       </form>

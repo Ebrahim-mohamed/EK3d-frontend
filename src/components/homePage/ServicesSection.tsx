@@ -24,8 +24,8 @@ export function ServicesSection() {
         </div>
       </div>
       <div className="flex flex-col gap-4 w-full">
-        <div className="grid grid-cols-2 gap-4 ">
-          {Array.from({ length: 5 }).map((_, i) => (
+        <div className="grid grid-cols-3 gap-4 ">
+          {Array.from({ length: 3 }).map((_, i) => (
   <ServiceBox
   cat={ts(`servCat${i}`)}
     img={`serv${i}`}

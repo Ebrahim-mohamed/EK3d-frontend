@@ -3,17 +3,6 @@ import { MostTextPattern } from "../MostTextPattern";
 import { InternshipBox } from "./InternshipBox";
 const internships = [
   {
-    title: "programOneTitle",
-    des: "programOnePra",
-    point: [
-      "programOneOption1",
-      "programOneOption2",
-      "programOneOption3",
-      "programOneOption4",
-      "programOneOption5",
-    ],
-  },
-  {
     title: "programTwoTitle",
     des: "programTwoPra",
     point: [

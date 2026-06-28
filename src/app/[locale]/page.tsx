@@ -6,19 +6,17 @@ import { ClientsSection } from "@/components/ClientsSection";
 import { FeedbacksSection } from "@/components/homePage/FeedbacksSection";
 import { NewsSection } from "@/components/homePage/News";
 import { ProjectsSection } from "@/components/homePage/ProjectsSection";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { FieldsSection } from "@/components/homePage/FieldsSection";
 
-export default function Home() {
-  const t=useTranslations('HomePage')
+export default async function Home() {
+  const t = await getTranslations("HomePage");
   return (
     <div className="bg-[#0A0A0A]">
       <Hero
         page="home"
         title={
-          <span>
-            {t("title")}
-          </span>
+            t("title")
         }
         pra={<span>EGYSMART where vision meets exactness</span>}
       />

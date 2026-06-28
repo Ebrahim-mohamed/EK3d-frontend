@@ -1,12 +1,12 @@
 import Image from "next/image";
 
-export function ValueBox({ title, pra }: { title: string; pra: string }) {
+export function ValueBox({ title, pra,icon }: { title: string; pra: string ,icon:string}) {
   return (
     <div className="flex flex-col items-center justify-center max-[800px]:w-[80%]">
       <div className="w-52  aspect-square rounded-full bg-black flex items-center justify-center gap-2 flex-col text-white flex-1 font-[350] -mb-12 z-20">
         <Image
-          alt={`${title} icon`}
-          src={`/about/${title}.png`}
+          alt={`${icon} icon`}
+          src={`/about/${icon}.png`}
           width={100}
           height={100}
           className="w-13 aspect-square"

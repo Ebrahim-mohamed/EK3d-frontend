@@ -1,4 +1,12 @@
 {
+  "tabs":{
+"home":"Home",
+"about":"About Us",
+"collaborations":"Collaborations",
+"products":"Products",
+"technology":"Technology",
+"contact":"Contact us"
+  },
   "HomePage": {
     "title": "Advanced 3D Printing Solutions & Exceptional 3D-Printed Products",
     "about":"From industrial 3D printing solutions to exceptional on-demand creations, we bring your ideas to life.",
@@ -6,35 +14,32 @@
       "head":"Turning ideas into reality",
       "smallHead":"Our services",
       "des":"For us, 3D printing isn't just about production — it's about innovation. We bring integrity and creative excellence to every phase, from initial design to final realization ",
-      "serv0":"3D printers",
-      "servCat0":"printers",
-      "serv1":"3D toolkits",
-      "servCat1":"toolkits",
-      "serv2":"3D design",
-      "servCat2":"design",
-      "serv3":"3D scanning",
-      "servCat3":"scanning",
-      "serv4":"3D printing",
-      "servCat4":"printing"
+      
+      "serv0":"3D design",
+      "servCat0":"design",
+      "serv1":"3D scanning",
+      "servCat1":"scanning",
+      "serv2":"3D printing",
+      "servCat2":"printing"
     },
     "fields":{
       "smallHead":"OUR FIELDS",
       "head":"3D printing is applicable to these fields",
-      "fHead0":"Interior Design & Decoration:",
+      "fHead0":"Interior Design & Decoration",
       "field0":"Discover custom-made pieces for media production and bring your unique ideas to life.",
-      "fHead1":"Media Production:",
+      "fHead1":"Media Production",
       "field1":"Transform your interiors with unique, one-of-a-kind designs that add style and personality to every space.",
-      "fHead2":"Manufacturing:",
+      "fHead2":"Manufacturing",
       "field2":"Spare Parts - Jigs & Fixtures – Prototyping - End-use parts - Custom machine parts",
-      "fHead3":"Gadgets:",
+      "fHead3":"Gadgets",
       "field3":"Great events stand out through creativity and innovation. Create unique, custom-made pieces with us and give your event an experience that leaves a lasting impression.",
-      "fHead4":"Event Organizing:",
+      "fHead4":"Event Organizing",
       "field4":"We don't just create spare parts. We manufacture complete solutions, from simple components to fully assembled machines.",
-      "fHead5":"Advertising:",
+      "fHead5":"Advertising",
       "field5":"Trends come through creativity. Create unignorable and unforgettable advertising displays and promotional tools with us to make your brand stand out from the competition.",
-      "fHead6":"Tourism:",
+      "fHead6":"Tourism",
       "field6":"Create something worth sharing. Design unique attractions with us that draw attention, inspire photos, create unforgettable memories, and turn your brand into a social media trend.",
-      "fHead7":"Arts:",
+      "fHead7":"Arts",
       "field7":"Art is limitless creativity. Bring your ideas to life with designs that turn imagination into reality."
     }
   },
@@ -66,26 +71,89 @@
     "programFourPra":"Customize Your own program, contact us"
     
   },
-  "ContactPage":{
-    "title":"Contact Us",
-    "infoTitle":"Contact Information",
-    "infoDes":"At EK3DPrints, we believe that successful projects are built on the foundation of effective communication. Whether you are a client planning your next",
-    "whatsapp":"Whatsapp",
-    "whatsappData":"+2 010 02518 690",
-    "phone":"Phone Number",
-    "phoneData":"+2 010 29444 280",
-    "mail":"Email Address",
-    "mailData":"EK3dPrints.com",
-    "getInTouch":"Get In Touch",
-    "send":"Send Message"
+ "ContactPage": {
+  "title": "Contact Us",
+  "infoTitle": "Contact Information",
+  "infoDes": "At EK3DPrints, we believe that successful projects are built on the foundation of effective communication. Whether you are a client planning your next project, we are here to help.",
+  "whatsapp": "Whatsapp",
+  "whatsappData": "+2 010 02518 690",
+  "phone": "Phone Number",
+  "phoneData": "+2 010 29444 280",
+  "mail": "Email Address",
+  "mailData": "EK3dPrints.com",
+
+  "contactUs": "Contact Us",
+  "getInTouch": "Get In Touch",
+
+  "labels": {
+    "name": "Full Name",
+    "email": "E-mail",
+    "subject": "Subject",
+    "message": "Message"
   },
+
+  "placeholders": {
+    "name": "Your name...",
+    "email": "Your e-mail...",
+    "subject": "Title...",
+    "message": "Your message..."
+  },
+
+  "buttons": {
+    "send": "Send Message",
+    "loading": "Submitting...",
+    "submit":"Submit"
+  },
+
+  "success": "Message sent successfully!",
+  "error": "Something went wrong. Please try again.",
+
+  "validation": {
+    "nameRequired": "Name is required",
+    "emailInvalid": "Invalid email address",
+    "subjectRequired": "Subject is required",
+    "messageRequired": "Message must be at least 10 characters"
+  }
+},
   "whoWeAre":{
+     "redText": "— our values",
+    "titleSec": {
+      "before": "What We",
+      "highlight": "Value",
+      "after": "Most"},
     "title":"Who we are",
+    "valueSmall":"Value",
     "aboutPra":"As a leader in Egypt's 3D technology, we specialize in two interconnected pillars: advanced 3D printing solutions and exceptional 3D-printed products. We provide businesses and creators with the complete toolkit, from high-performance printers and tools to expert, on-demand manufacturing, ensuring quality and innovation at every layer.",
   "value":"We deliver high-precision, customized 3D printing solutions that help businesses reduce time to market, optimize costs, and innovate with confidence across multiple industries.",
   "mission":"Mission",
   "missionContent":"To transform ideas into high-quality 3D-printed solutions by combining advanced technology, precision, and innovation to serve industrial, commercial, and creative needs.",
 "vision":"Vision",
 "visionContent":"To lead the transformation of traditional manufacturing into a smarter, faster, and more flexible future through 3D printing technology."
+},
+"innovation":{
+  "title":"Innovation Projects"
+},
+"technology":{
+  "title":"Technology"
+},
+"Footer": {
+  "description": "EK3DPrints specializes in modern engineering, focusing on analysis, design, and innovation in contemporary construction. Founded in 2015, our team is committed to consistently delivering high-quality, innovative, and safe projects on time.",
+
+  "copyright": "©2026 EK3DPrints. All rights reserved.",
+
+  "groups": {
+    "company": "Company",
+    "services": "Services",
+    "connect": "Connect"
+  },
+
+  "links": {
+    "about": "About Us",
+    "collaborations": "Collaboration Programs",
+    "contact": "Contact Us",
+    "turnkeyProjects": "Turnkey Projects",
+    "flooringProjects": "Flooring Projects",
+    "concreteFlooring": "Concrete Flooring"
+  }
 }
 }

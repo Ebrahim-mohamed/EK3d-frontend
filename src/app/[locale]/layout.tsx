@@ -1,7 +1,8 @@
 import { Inter, Tajawal } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
+import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { routing } from "@/i18n/routing";
+import { routing } from "../../i18n/routing";
 import RootLayoutClient from "../RootLayout";
 
 // English font
@@ -17,8 +18,6 @@ const tajawal = Tajawal({
   display: "swap",
 });
 
-// Optional decorative title font
-
 export default async function LocaleLayout({
   children,
   params,
@@ -32,6 +31,8 @@ export default async function LocaleLayout({
     notFound();
   }
 
+  const messages = await getMessages();
+
   return (
     <html
       lang={locale}
@@ -39,11 +40,8 @@ export default async function LocaleLayout({
       className={locale === "ar" ? tajawal.className : inter.className}
     >
       <body className="relative overflow-x-hidden">
-        <NextIntlClientProvider locale={locale}>
-          {/* <div className="fixed bg-white top-[9rem] left-0 w-[20rem] h-[43rem]"></div> */}
-          
-           <RootLayoutClient> <NextIntlClientProvider>{children}</NextIntlClientProvider></RootLayoutClient>
-          
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <RootLayoutClient>{children}</RootLayoutClient>
         </NextIntlClientProvider>
       </body>
     </html>

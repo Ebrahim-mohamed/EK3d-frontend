@@ -2,17 +2,18 @@ import Image from "next/image";
 import { HeaderLink } from "./HeaderLink";
 import Link from "next/link";
 import { useState } from "react";
+import { LanguageSwitcher } from "./LangButton";
 
 const links = [
-  { name: "Home", to: "" },
+  { name: "home", to: "" },
   // { name: "Services", to: "services" },
-  { name: "About Us", to: "about" },
-  { name: "Collaborations", to: "collaboration" },
+  { name: "about", to: "about" },
+  { name: "collaborations", to: "collaboration" },
   // { name: "Subsidiary", to: "subsidiary" },
-  { name: "Innovative Products", to: "innovative" },
-  { name: "Technology", to: "technology" },
+  { name: "products", to: "innovative" },
+  { name: "technology", to: "technology" },
   
-  { name: "Contact us", to: "contact" },
+  { name: "contact", to: "contact" },
 ];
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,6 +35,7 @@ export function Header() {
         {links.map((l) => (
           <HeaderLink link={l.to} name={l.name} key={l.name} />
         ))}
+        <LanguageSwitcher />
       </div>
       <button
         className="hidden gap-8 items-center max-[800px]:flex  cursor-pointer"
