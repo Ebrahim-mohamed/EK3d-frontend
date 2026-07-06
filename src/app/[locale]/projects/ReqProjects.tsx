@@ -3,27 +3,37 @@ import { ProjectTemplate } from "./ProjectTemplate";
 
 type Project = {
   _id: string;
-  title: string;
-  client: string;
-  images: string[];              // ← was: image: string
+  images: string[];
   serviceKind: string;
-  category: string;
-  duration: string;
-  bua: number;
-  scopeOfWork: string;
-  budget: number;
-  status: string;
-  location: string;
+  titleEn: string;
+  titleAr: string;
+  descriptionEn: string;
+  descriptionAr: string;
 };
 
-const SERVICE_MAP: Record<string, string> = {
-  "turnkey-projects": "Turnkey Projects",
-  "protective-coating": "Protective Coating",
-  "concrete-flooring": "Concrete Flooring",
+/* Canonical service kinds, keyed by a short keyword that should appear
+   in the URL slug however it's formatted (e.g. "scanning", "3d-scanning",
+   "3dscanning" all resolve to "3D Scanning"). */
+const SERVICE_KEYWORDS: Record<string, string> = {
+  design: "3D Design",
+  scanning: "3D Scanning",
+  printing: "3D Printing",
 };
+
+function normalize(value: string): string {
+  return value.toLowerCase().replace(/[^a-z0-9]/g, "");
+}
+
+function resolveServiceKind(cat: string): string | undefined {
+  const normalizedCat = normalize(cat);
+  const match = Object.entries(SERVICE_KEYWORDS).find(([keyword]) =>
+    normalizedCat.includes(keyword)
+  );
+  return match?.[1];
+}
 
 async function getProjects() {
-  const res = await fetch("https://api.egysmart.org/api/projects", {
+  const res = await fetch("http://localhost:4002/api/projects", {
     cache: "no-store",
   });
   if (!res.ok) throw new Error("Failed to fetch projects");
@@ -32,34 +42,38 @@ async function getProjects() {
 
 export async function ReqProject({ cat }: { cat: string }) {
   const projects: Project[] = await getProjects();
+  const serviceKind = resolveServiceKind(cat);
 
-  const filteredProjects = projects.filter(
-    (project) => project.serviceKind === SERVICE_MAP[cat]
-  );
+  const filteredProjects = serviceKind
+    ? projects.filter((project) => project.serviceKind === serviceKind)
+    : [];
+
+  const heroTitle = serviceKind ?? "Projects";
 
   return (
     <div>
       <Hero
         page="services"
-        title={SERVICE_MAP[cat]}
-        pra={`A Curated Selection of Our ${SERVICE_MAP[cat]} Project Landmarks`}
+        title={heroTitle}
+        pra={`A Curated Selection of Our ${heroTitle} Project Landmarks`}
       />
 
       <div className="px-[var(--sectionPadding)] py-4 bg-[#050606]">
+        {filteredProjects.length === 0 && (
+          <p className="text-white text-center py-10">
+            No projects found for this category.
+          </p>
+        )}
         {filteredProjects.map((project, index) => (
           <ProjectTemplate
             key={project._id}
-            stat={project.status}
-            bud={project.budget}
             num={index}
-            title={project.title}
-            client={project.client}
-            category={project.category || "N/A"}
-            duration={project.duration}
-            bua={String(project.bua)}
-            scop={project.scopeOfWork}
-            location={project.location}
-            images={project.images}        // ← pass full array
+            titleEn={project.titleEn}
+            titleAr={project.titleAr}
+            descriptionEn={project.descriptionEn}
+            descriptionAr={project.descriptionAr}
+            serviceKind={project.serviceKind}
+            images={project.images}
           />
         ))}
       </div>

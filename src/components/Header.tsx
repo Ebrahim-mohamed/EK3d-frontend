@@ -10,7 +10,7 @@ const links = [
   { name: "about", to: "about" },
   { name: "collaborations", to: "collaboration" },
   // { name: "Subsidiary", to: "subsidiary" },
-  { name: "products", to: "innovative" },
+  // { name: "products", to: "innovative" },
   { name: "technology", to: "technology" },
   
   { name: "contact", to: "contact" },

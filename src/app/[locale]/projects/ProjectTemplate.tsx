@@ -1,5 +1,6 @@
 "use client";
 
+import { useLocale } from "next-intl";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
@@ -7,31 +8,28 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 export function ProjectTemplate({
-  title,
-  duration,
-  scop,
-  bua,
-  location,
-  client,
-  category,
+  titleEn,
+  titleAr,
+  descriptionEn,
+  descriptionAr,
+  serviceKind,
   images,
   num,
-  bud,
-  stat,
 }: {
-  title: string;
-  duration: string;
-  scop: string;
-  bua: string;
-  location: string;
-  client: string;
-  category: string;
-  images: string[];              // ← was: img: string
+  titleEn: string;
+  titleAr: string;
+  descriptionEn: string;
+  descriptionAr: string;
+  serviceKind: string;
+  images: string[];
   num: number;
-  bud: number;
-  stat: string;
 }) {
-  const baseUrl = "https://api.egysmart.org/uploads/";
+  const baseUrl = "http://localhost:4002/uploads/";
+  const locale = useLocale();
+  const isArabic = locale === "ar";
+
+  const title = isArabic ? titleAr : titleEn;
+  const description = isArabic ? descriptionAr : descriptionEn;
 
   return (
     <div
@@ -72,47 +70,19 @@ export function ProjectTemplate({
       </div>
 
       {/* ── INFO ── */}
-      <div className="flex-1 flex flex-col gap-10 text-white">
+      <div
+        dir={isArabic ? "rtl" : "ltr"}
+        className="flex-1 flex flex-col gap-6 text-white"
+      >
+        <span className="text-[0.9rem] font-medium text-[#277FCD] uppercase tracking-wide">
+          {serviceKind}
+        </span>
+
         <h1 className="text-[3rem] font-bold">{title}</h1>
 
-        <div className="flex px-6 flex-col gap-4 border-l border-[#D9D9D9] text-[1rem] font-normal">
-          <div className="flex gap-6">
-            <p className="font-[325]">Client</p>
-            <p className="font-medium">{client}</p>
-          </div>
-          <div className="flex gap-6">
-            <p className="font-[325]">Location</p>
-            <p className="font-medium">{location}</p>
-          </div>
-          <div className="flex gap-6">
-            <p className="font-[325]">Category</p>
-            <p className="font-medium">{category}</p>
-          </div>
-        </div>
-
-        <div className="flex gap-6 text-[1rem] font-normal">
-          <div className="flex flex-col gap-2">
-            <p className="font-[325]">Duration</p>
-            <p className="font-medium">{duration} m</p>
-          </div>
-          <div className="flex flex-col gap-2">
-            <p className="font-[325]">BUA</p>
-            <p className="font-medium">{bua} m²</p>
-          </div>
-          <div className="flex flex-col gap-2">
-            <p className="font-[325]">Budget</p>
-            <p className="font-medium">{bud} M EGP</p>
-          </div>
-          <div className="flex flex-col gap-2">
-            <p className="font-[325]">Status</p>
-            <p className="font-medium">{stat}</p>
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-4 text-[1rem] font-normal">
-          <p className="font-[325]">Scope of work</p>
-          <p className="font-medium">{scop}</p>
-        </div>
+        <p className="text-[1rem] leading-[160%] font-normal text-[#D9D9D9]">
+          {description}
+        </p>
       </div>
     </div>
   );

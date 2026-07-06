@@ -6,24 +6,25 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 /* ================= TYPES ================= */
-type NewsItem = {
+type TechnologyItem = {
   _id: string;
   image: string;
-  date: string;
-  headline: string;
-  details: string;
+  titleEn: string;
+  titleAr: string;
+  descriptionEn: string;
+  descriptionAr: string;
   createdAt: string;
 };
 
 /* ================= SCHEMA ================= */
-const newsSchema = z.object({
-  headline: z.string().min(1, "Headline is required"),
-  details: z.string().min(1, "Details are required"),
-  date: z.string().min(1, "Date is required"),
+const technologySchema = z.object({
+  titleEn: z.string().min(1, "English title is required"),
+  titleAr: z.string().min(1, "Arabic title is required"),
+  descriptionEn: z.string().min(1, "English description is required"),
+  descriptionAr: z.string().min(1, "Arabic description is required"),
   image: z.any().optional(),
 });
-
-type NewsForm = z.infer<typeof newsSchema>;
+type TechnologyForm = z.infer<typeof technologySchema>;
 
 /* ================= MODAL ================= */
 function Modal({
@@ -41,7 +42,7 @@ function Modal({
       <div className="bg-white dark:bg-gray-800 p-6 rounded-lg w-full max-w-xl max-h-[90vh] overflow-auto">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-            News
+            Technology
           </h2>
           <button
             onClick={onClose}
@@ -57,11 +58,12 @@ function Modal({
 }
 
 /* ================= TAB ================= */
-export default function NewsTab() {
-  const [news, setNews] = useState<NewsItem[]>([]);
+export default function TechnologyTab() {
+  const [technology, setTechnology] = useState<TechnologyItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState(false);
-  const [editingNews, setEditingNews] = useState<NewsItem | null>(null);
+  const [editingTechnology, setEditingTechnology] =
+    useState<TechnologyItem | null>(null);
 
   const {
     register,
@@ -69,107 +71,114 @@ export default function NewsTab() {
     reset,
     formState: { errors },
     setValue,
-  } = useForm<NewsForm>({
-    resolver: zodResolver(newsSchema),
+  } = useForm<TechnologyForm>({
+    resolver: zodResolver(technologySchema),
   });
 
-  /* 🔒 LOAD NEWS */
+  /* 🔒 LOAD TECHNOLOGY */
   useEffect(() => {
-    const loadNews = async () => {
+    const loadTechnology = async () => {
       try {
-        const res = await fetch("https://api.egysmart.org/api/news");
-        if (!res.ok) throw new Error("Failed to fetch news");
+        const res = await fetch("http://localhost:4002/api/technology");
+        if (!res.ok) throw new Error("Failed to fetch technology");
         const data = await res.json();
-        setNews(data);
+        setTechnology(data);
       } catch (err) {
         console.error(err);
       } finally {
         setLoading(false);
       }
     };
-    loadNews();
+    loadTechnology();
   }, []);
 
   /* ---------- SUBMIT ---------- */
-  const onSubmit = async (data: NewsForm) => {
+  const onSubmit = async (data: TechnologyForm) => {
     const formData = new FormData();
-    formData.append("headline", data.headline);
-    formData.append("details", data.details);
-    formData.append("date", data.date);
+    formData.append("titleEn", data.titleEn);
+    formData.append("titleAr", data.titleAr);
+    formData.append("descriptionEn", data.descriptionEn);
+    formData.append("descriptionAr", data.descriptionAr);
     if (data.image && (data.image as unknown as FileList)[0])
       formData.append("image", (data.image as unknown as FileList)[0]);
 
-    if (editingNews) {
+    if (editingTechnology) {
       // Edit
       const res = await fetch(
-        `https://api.egysmart.org/api/news/${editingNews._id}`,
+        `http://localhost:4002/api/technology/${editingTechnology._id}`,
         {
           method: "PUT",
           body: formData,
         },
       );
       const updated = await res.json();
-      setNews((prev) => prev.map((n) => (n._id === updated._id ? updated : n)));
+      setTechnology((prev) =>
+        prev.map((n) => (n._id === updated._id ? updated : n)),
+      );
     } else {
       // Add
-      const res = await fetch("https://api.egysmart.org/api/news", {
+      const res = await fetch("http://localhost:4002/api/technology", {
         method: "POST",
         body: formData,
       });
       const newItem = await res.json();
-      setNews((prev) => [newItem, ...prev]);
+      setTechnology((prev) => [newItem, ...prev]);
     }
 
     reset();
-    setEditingNews(null);
+    setEditingTechnology(null);
     setOpen(false);
   };
 
   /* ---------- DELETE ---------- */
   const handleDelete = async (id: string) => {
-    if (!confirm("Are you sure you want to delete this news item?")) return;
-    await fetch(`https://api.egysmart.org/api/news/${id}`, {
+    if (!confirm("Are you sure you want to delete this technology item?"))
+      return;
+    await fetch(`http://localhost:4002/api/technology/${id}`, {
       method: "DELETE",
     });
-    setNews((prev) => prev.filter((n) => n._id !== id));
+    setTechnology((prev) => prev.filter((n) => n._id !== id));
   };
 
   /* ---------- EDIT ---------- */
-  const handleEdit = (item: NewsItem) => {
-    setEditingNews(item);
-    setValue("headline", item.headline);
-    setValue("details", item.details);
-    setValue("date", item.date.split("T")[0]); // format for input type date
+  const handleEdit = (item: TechnologyItem) => {
+    setEditingTechnology(item);
+    setValue("titleEn", item.titleEn);
+    setValue("titleAr", item.titleAr);
+    setValue("descriptionEn", item.descriptionEn);
+    setValue("descriptionAr", item.descriptionAr);
     setOpen(true);
   };
 
-  if (loading) return <p className="text-gray-500">Loading news...</p>;
+  if (loading) return <p className="text-gray-500">Loading technology...</p>;
 
   return (
     <div className="space-y-6">
       {/* HEADER */}
       <div className="flex items-center justify-between">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-          News
+          Technology
         </h2>
         <button
           onClick={() => {
             reset();
-            setEditingNews(null);
+            setEditingTechnology(null);
             setOpen(true);
           }}
           className="px-5 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded shadow"
         >
-          + Add News
+          + Add Technology
         </button>
       </div>
 
       {/* EMPTY */}
-      {news.length === 0 && <p className="text-gray-500">No news found</p>}
+      {technology.length === 0 && (
+        <p className="text-gray-500">No technology items found</p>
+      )}
 
       {/* LIST */}
       <div className="space-y-4">
-        {news.map((item) => (
+        {technology.map((item) => (
           <div
             key={item._id}
             className="flex flex-col md:flex-row border rounded-lg shadow-sm overflow-hidden bg-white dark:bg-gray-800"
@@ -177,8 +186,8 @@ export default function NewsTab() {
             <div className="w-full md:w-48 h-32 md:h-auto overflow-hidden flex-shrink-0">
               {item.image && (
                 <img
-                  src={`https://api.egysmart.org/uploads/${item.image}`}
-                  alt={item.headline ?? "News Image"}
+                  src={`http://localhost:4002/uploads/${item.image}`}
+                  alt="Technology"
                   className="w-full h-full object-cover"
                 />
               )}
@@ -188,15 +197,29 @@ export default function NewsTab() {
               <div>
                 <div className="flex justify-between items-start">
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                    {item.headline}
+                    {item.titleEn}
                   </h3>
                   <span className="text-xs text-gray-400 dark:text-gray-300">
-                    {new Date(item.date ?? item.createdAt).toLocaleDateString()}
+                    {new Date(item.createdAt).toLocaleDateString()}
                   </span>
                 </div>
 
+                <h4
+                  dir="rtl"
+                  className="text-md font-semibold text-gray-700 dark:text-gray-200 mt-1"
+                >
+                  {item.titleAr}
+                </h4>
+
                 <p className="text-sm text-gray-700 dark:text-gray-300 mt-2">
-                  {item.details}
+                  {item.descriptionEn}
+                </p>
+
+                <p
+                  dir="rtl"
+                  className="text-sm text-gray-700 dark:text-gray-300 mt-2"
+                >
+                  {item.descriptionAr}
                 </p>
               </div>
 
@@ -225,43 +248,65 @@ export default function NewsTab() {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
             <label className="block mb-1 text-gray-700 dark:text-white">
-              Headline
+              English Title
             </label>
             <input
-              {...register("headline")}
-              placeholder="Headline"
+              {...register("titleEn")}
+              placeholder="English Title"
               className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white"
             />
-            {errors.headline && (
-              <p className="text-red-600 text-sm">{errors.headline.message}</p>
+            {errors.titleEn && (
+              <p className="text-red-600 text-sm">{errors.titleEn.message}</p>
             )}
           </div>
 
           <div>
             <label className="block mb-1 text-gray-700 dark:text-white">
-              Details
+              Arabic Title
+            </label>
+            <input
+              {...register("titleAr")}
+              placeholder="Arabic Title"
+              dir="rtl"
+              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white"
+            />
+            {errors.titleAr && (
+              <p className="text-red-600 text-sm">{errors.titleAr.message}</p>
+            )}
+          </div>
+
+          <div>
+            <label className="block mb-1 text-gray-700 dark:text-white">
+              English Description
             </label>
             <textarea
-              {...register("details")}
-              placeholder="Details"
+              {...register("descriptionEn")}
+              rows={6}
+              placeholder="English Description"
               className="w-full px-4 py-2 border rounded resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white"
             />
-            {errors.details && (
-              <p className="text-red-600 text-sm">{errors.details.message}</p>
+            {errors.descriptionEn && (
+              <p className="text-red-600 text-sm">
+                {errors.descriptionEn.message}
+              </p>
             )}
           </div>
 
           <div>
             <label className="block mb-1 text-gray-700 dark:text-white">
-              Date
+              Arabic Description
             </label>
-            <input
-              type="date"
-              {...register("date")}
-              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white"
+            <textarea
+              {...register("descriptionAr")}
+              rows={6}
+              dir="rtl"
+              placeholder="الوصف بالعربية"
+              className="w-full px-4 py-2 border rounded resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white"
             />
-            {errors.date && (
-              <p className="text-red-600 text-sm">{errors.date.message}</p>
+            {errors.descriptionAr && (
+              <p className="text-red-600 text-sm">
+                {errors.descriptionAr.message}
+              </p>
             )}
           </div>
 
@@ -271,8 +316,8 @@ export default function NewsTab() {
             </label>
             <input
               type="file"
-              {...register("image")}
               accept="image/*"
+              {...register("image")}
               className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white"
             />
             {errors.image && (
@@ -283,7 +328,7 @@ export default function NewsTab() {
           </div>
 
           <button className="w-full bg-black text-white py-2 rounded hover:bg-gray-800 transition">
-            {editingNews ? "Update News" : "Save News"}
+            {editingTechnology ? "Update Technology" : "Save Technology"}
           </button>
         </form>
       </Modal>

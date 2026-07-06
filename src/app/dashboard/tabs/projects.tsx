@@ -1,52 +1,32 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 /* ================= TYPES ================= */
-type ServiceKind =
-  | "Turnkey Projects"
-  | "Protective Coating"
-  | "Concrete Flooring";
-
-type Categories = "Residence" | "Commercial" | "Industries";
+type ServiceKind = "3D Design" | "3D Scanning" | "3D Printing";
 
 type Project = {
   _id: string;
   images: string[];
   serviceKind: ServiceKind;
-  category: Categories;
-  title: string;
-  client: string;
-  budget: number;
-  status: "planned" | "in-progress" | "completed";
-  duration: string;
-  bua: number;
-  scopeOfWork: string;
-  location: string;
-  important: boolean;
+  titleEn: string;
+  titleAr: string;
+  descriptionEn: string;
+  descriptionAr: string;
   createdAt: string;
 };
 
 /* ================= SCHEMA ================= */
 const projectSchema = z.object({
-  title: z.string().min(1, "Title is required"),
-  client: z.string().min(1, "Client name is required"),
+  titleEn: z.string().min(1, "English title is required"),
+  titleAr: z.string().min(1, "Arabic title is required"),
+  descriptionEn: z.string().min(1, "English description is required"),
+  descriptionAr: z.string().min(1, "Arabic description is required"),
   images: z.any().optional(),
-  serviceKind: z.enum([
-    "Turnkey Projects",
-    "Protective Coating",
-    "Concrete Flooring",
-  ]),
-  category: z.enum(["Residence", "Commercial", "Industries"]),
-  budget: z.coerce.number().min(1, "Budget must be greater than 0"),
-  status: z.enum(["planned", "in-progress", "completed"]),
-  duration: z.string().min(1, "Duration required"),
-  bua: z.coerce.number().min(1, "BUA must be greater than 0"),
-  scopeOfWork: z.string().min(1, "Scope of work required"),
-  location: z.string().min(3, "location required"),
+  serviceKind: z.enum(["3D Design", "3D Scanning", "3D Printing"]),
 });
 
 type ProjectForm = z.infer<typeof projectSchema>;
@@ -66,7 +46,7 @@ function ImageSlider({ images, title }: { images: string[]; title: string }) {
   if (images.length === 1) {
     return (
       <img
-        src={`https://api.egysmart.org/uploads/${images[0]}`}
+        src={`http://localhost:4002/uploads/${images[0]}`}
         alt={title}
         className="w-full h-full object-cover"
       />
@@ -87,7 +67,7 @@ function ImageSlider({ images, title }: { images: string[]; title: string }) {
     <div className="relative w-full h-full group overflow-hidden">
       {/* Image */}
       <img
-        src={`https://api.egysmart.org/uploads/${images[current]}`}
+        src={`http://localhost:4002/uploads/${images[current]}`}
         alt={`${title} ${current + 1}`}
         className="w-full h-full object-cover transition-opacity duration-300"
       />
@@ -183,7 +163,7 @@ export default function ProjectsTab() {
   useEffect(() => {
     const loadProjects = async () => {
       try {
-        const res = await fetch("https://api.egysmart.org/api/projects");
+        const res = await fetch("http://localhost:4002/api/projects");
         if (!res.ok) throw new Error("Failed to fetch projects");
         const data = await res.json();
         setProjects(data);
@@ -196,46 +176,23 @@ export default function ProjectsTab() {
     loadProjects();
   }, []);
 
-  /* ---------- TOGGLE IMPORTANT ---------- */
-  const handleToggleImportant = async (id: string) => {
-    try {
-      const res = await fetch(
-        `https://api.egysmart.org/api/projects/${id}/important`,
-        { method: "PATCH" }
-      );
-      if (!res.ok) throw new Error("Failed to toggle important");
-      const updated = await res.json();
-      setProjects((prev) =>
-        prev.map((p) => (p._id === updated._id ? updated : p))
-      );
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
   /* ---------- SUBMIT ---------- */
   const onSubmit = async (data: ProjectForm) => {
     const formData = new FormData();
-    formData.append("title", data.title);
-    formData.append("client", data.client);
+    formData.append("titleEn", data.titleEn);
+    formData.append("titleAr", data.titleAr);
+    formData.append("descriptionEn", data.descriptionEn);
+    formData.append("descriptionAr", data.descriptionAr);
+    formData.append("serviceKind", data.serviceKind);
 
     const fileList = data.images as unknown as FileList;
     if (fileList && fileList.length > 0) {
       Array.from(fileList).forEach((file) => formData.append("images", file));
     }
 
-    formData.append("serviceKind", data.serviceKind);
-    formData.append("category", data.category);
-    formData.append("budget", String(data.budget));
-    formData.append("status", data.status);
-    formData.append("location", data.location);
-    formData.append("duration", data.duration);
-    formData.append("bua", String(data.bua));
-    formData.append("scopeOfWork", data.scopeOfWork);
-
     if (editingProject) {
       const res = await fetch(
-        `https://api.egysmart.org/api/projects/${editingProject._id}`,
+        `http://localhost:4002/api/projects/${editingProject._id}`,
         { method: "PUT", body: formData }
       );
       const updated = await res.json();
@@ -243,7 +200,7 @@ export default function ProjectsTab() {
         prev.map((p) => (p._id === updated._id ? updated : p))
       );
     } else {
-      const res = await fetch("https://api.egysmart.org/api/projects", {
+      const res = await fetch("http://localhost:4002/api/projects", {
         method: "POST",
         body: formData,
       });
@@ -259,7 +216,7 @@ export default function ProjectsTab() {
   /* ---------- DELETE ---------- */
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this project?")) return;
-    await fetch(`https://api.egysmart.org/api/projects/${id}`, {
+    await fetch(`http://localhost:4002/api/projects/${id}`, {
       method: "DELETE",
     });
     setProjects((prev) => prev.filter((p) => p._id !== id));
@@ -268,16 +225,11 @@ export default function ProjectsTab() {
   /* ---------- EDIT ---------- */
   const handleEdit = (project: Project) => {
     setEditingProject(project);
-    setValue("title", project.title);
-    setValue("client", project.client);
+    setValue("titleEn", project.titleEn);
+    setValue("titleAr", project.titleAr);
+    setValue("descriptionEn", project.descriptionEn);
+    setValue("descriptionAr", project.descriptionAr);
     setValue("serviceKind", project.serviceKind);
-    setValue("category", project.category);
-    setValue("budget", project.budget);
-    setValue("status", project.status);
-    setValue("duration", project.duration);
-    setValue("bua", project.bua);
-    setValue("scopeOfWork", project.scopeOfWork);
-    setValue("location", project.location);
     setOpen(true);
   };
 
@@ -311,94 +263,53 @@ export default function ProjectsTab() {
         {projects.map((project) => (
           <div
             key={project._id}
-            className={`flex flex-col md:flex-row border rounded-lg shadow-sm overflow-hidden bg-white dark:bg-gray-800 transition-colors ${
-              project.important
-                ? "border-yellow-400 dark:border-yellow-500"
-                : "border-gray-200 dark:border-gray-700"
-            }`}
+            className="flex flex-col md:flex-row border rounded-lg shadow-sm overflow-hidden bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700"
           >
             {/* ── IMAGE SLIDER THUMBNAIL ── */}
             <div className="w-full md:w-48 h-40 md:h-auto flex-shrink-0">
-              <ImageSlider images={project.images} title={project.title} />
+              <ImageSlider images={project.images} title={project.titleEn} />
             </div>
 
             <div className="p-4 flex-1 flex flex-col justify-between">
               <div>
                 <div className="flex justify-between items-start gap-2">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                      {project.title ?? "Untitled"}
-                    </h3>
-                    {project.important && (
-                      <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold bg-yellow-400 text-yellow-900 uppercase tracking-wide">
-                        ★ Featured
-                      </span>
-                    )}
-                  </div>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                    {project.titleEn}
+                  </h3>
                   <span className="text-xs text-gray-400 dark:text-gray-300 whitespace-nowrap shrink-0">
                     {new Date(project.createdAt).toLocaleDateString()}
                   </span>
                 </div>
 
-                <p className="text-sm mt-1">
-                  <b>Client:</b> {project.client}
+                <h4
+                  dir="rtl"
+                  className="text-md font-semibold text-gray-700 dark:text-gray-200 mt-1"
+                >
+                  {project.titleAr}
+                </h4>
+
+                <p className="text-sm text-gray-500 dark:text-gray-300 mt-2">
+                  {project.serviceKind}
                 </p>
-                <p className="text-sm text-gray-500 dark:text-gray-300 mt-1">
-                  {project.serviceKind ?? "N/A"}
+
+                <p className="text-sm text-gray-700 dark:text-gray-300 mt-2">
+                  {project.descriptionEn}
                 </p>
-                <p className="text-sm mt-1">
-                  <b>Category:</b> {project.category || "N/A"}
+
+                <p
+                  dir="rtl"
+                  className="text-sm text-gray-700 dark:text-gray-300 mt-2"
+                >
+                  {project.descriptionAr}
                 </p>
+
                 <p className="text-sm mt-1 text-gray-500 dark:text-gray-400">
                   <b>Images:</b> {project.images?.length ?? 0}
-                </p>
-
-                <div className="flex flex-wrap gap-3 mt-2 text-sm text-gray-700 dark:text-gray-300">
-                  <span>
-                    <b>Budget:</b>{" "}
-                    {project.budget != null
-                      ? Number(project.budget).toLocaleString()
-                      : 0}{" "}
-                    M EGP
-                  </span>
-                  <span>
-                    <b>Status:</b> {project.status ?? "N/A"}
-                  </span>
-                  <span>
-                    <b>Duration:</b> {project.duration ?? "N/A"} m
-                  </span>
-                  <span>
-                    <b>BUA:</b>{" "}
-                    {project.bua != null
-                      ? Number(project.bua).toLocaleString()
-                      : 0}{" "}
-                    m²
-                  </span>
-                </div>
-
-                <p className="text-sm text-gray-700 dark:text-gray-300 mt-2">
-                  <b>Location:</b> {project.location ?? "N/A"}
-                </p>
-                <p className="text-sm text-gray-700 dark:text-gray-300 mt-2">
-                  <b>Scope:</b> {project.scopeOfWork ?? "N/A"}
                 </p>
               </div>
 
               {/* ACTIONS */}
               <div className="flex gap-4 mt-3 items-center flex-wrap">
-                <button
-                  onClick={() => handleToggleImportant(project._id)}
-                  className={`text-sm font-medium px-3 py-1 rounded border transition-colors ${
-                    project.important
-                      ? "border-yellow-400 bg-yellow-50 text-yellow-700 hover:bg-yellow-100 dark:bg-yellow-900/20 dark:text-yellow-400 dark:hover:bg-yellow-900/40"
-                      : "border-gray-300 text-gray-600 hover:border-yellow-400 hover:text-yellow-600 dark:border-gray-600 dark:text-gray-400 dark:hover:border-yellow-500 dark:hover:text-yellow-400"
-                  }`}
-                >
-                  {project.important
-                    ? "★ Remove from Slider"
-                    : "☆ Add to Slider"}
-                </button>
-
                 <button
                   onClick={() => handleEdit(project)}
                   className="text-blue-600 hover:underline"
@@ -422,43 +333,65 @@ export default function ProjectsTab() {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
             <label className="block mb-1 text-gray-700 dark:text-white">
-              Project Title
+              English Title
             </label>
             <input
-              {...register("title")}
-              placeholder="Project Title"
+              {...register("titleEn")}
+              placeholder="English Title"
               className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white"
             />
-            {errors.title && (
-              <p className="text-red-600 text-sm">{errors.title.message}</p>
+            {errors.titleEn && (
+              <p className="text-red-600 text-sm">{errors.titleEn.message}</p>
             )}
           </div>
 
           <div>
             <label className="block mb-1 text-gray-700 dark:text-white">
-              Client Name
+              Arabic Title
             </label>
             <input
-              {...register("client")}
-              placeholder="Client Name"
+              {...register("titleAr")}
+              placeholder="Arabic Title"
+              dir="rtl"
               className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white"
             />
-            {errors.client && (
-              <p className="text-red-600 text-sm">{errors.client.message}</p>
+            {errors.titleAr && (
+              <p className="text-red-600 text-sm">{errors.titleAr.message}</p>
             )}
           </div>
 
           <div>
             <label className="block mb-1 text-gray-700 dark:text-white">
-              Location
+              English Description
             </label>
-            <input
-              {...register("location")}
-              placeholder="Location"
-              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white"
+            <textarea
+              {...register("descriptionEn")}
+              rows={6}
+              placeholder="English Description"
+              className="w-full px-4 py-2 border rounded resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white"
             />
-            {errors.location && (
-              <p className="text-red-600 text-sm">{errors.location?.message}</p>
+            {errors.descriptionEn && (
+              <p className="text-red-600 text-sm">
+                {errors.descriptionEn.message}
+              </p>
+            )}
+          </div>
+
+          <div>
+            <label className="block mb-1 text-gray-700 dark:text-white">
+              Arabic Description
+            </label>
+            <textarea
+              {...register("descriptionAr")}
+              rows={6}
+              dir="rtl"
+              placeholder="الوصف بالعربية"
+              className="w-full px-4 py-2 border rounded resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white"
+            />
+            {errors.descriptionAr && (
+              <p className="text-red-600 text-sm">
+                {errors.descriptionAr.message}
+              </p>
             )}
           </div>
 
@@ -490,98 +423,10 @@ export default function ProjectsTab() {
               {...register("serviceKind")}
               className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white"
             >
-              <option value="Turnkey Projects">Turnkey Projects</option>
-              <option value="Protective Coating">Protective Coating</option>
-              <option value="Concrete Flooring">Concrete Flooring</option>
+              <option value="3D Design">3D Design</option>
+              <option value="3D Scanning">3D Scanning</option>
+              <option value="3D Printing">3D Printing</option>
             </select>
-          </div>
-
-          <div>
-            <label className="block mb-1 text-gray-700 dark:text-white">
-              Category
-            </label>
-            <select
-              {...register("category")}
-              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white"
-            >
-              <option value="Residence">Residence</option>
-              <option value="Commercial">Commercial</option>
-              <option value="Industries">Industries</option>
-            </select>
-          </div>
-
-          <div>
-            <label className="block mb-1 text-gray-700 dark:text-white">
-              Budget
-            </label>
-            <input
-              type="number"
-              {...register("budget")}
-              placeholder="Budget"
-              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white"
-            />
-            {errors.budget && (
-              <p className="text-red-600 text-sm">{errors.budget.message}</p>
-            )}
-          </div>
-
-          <div>
-            <label className="block mb-1 text-gray-700 dark:text-white">
-              Status
-            </label>
-            <select
-              {...register("status")}
-              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white"
-            >
-              <option value="planned">Planned</option>
-              <option value="in-progress">In Progress</option>
-              <option value="completed">Completed</option>
-            </select>
-          </div>
-
-          <div>
-            <label className="block mb-1 text-gray-700 dark:text-white">
-              Duration
-            </label>
-            <input
-              {...register("duration")}
-              placeholder="Duration"
-              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white"
-            />
-            {errors.duration && (
-              <p className="text-red-600 text-sm">{errors.duration.message}</p>
-            )}
-          </div>
-
-          <div>
-            <label className="block mb-1 text-gray-700 dark:text-white">
-              BUA (m²)
-            </label>
-            <input
-              type="number"
-              {...register("bua")}
-              placeholder="BUA"
-              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white"
-            />
-            {errors.bua && (
-              <p className="text-red-600 text-sm">{errors.bua.message}</p>
-            )}
-          </div>
-
-          <div>
-            <label className="block mb-1 text-gray-700 dark:text-white">
-              Scope of Work
-            </label>
-            <textarea
-              {...register("scopeOfWork")}
-              placeholder="Scope of Work"
-              className="w-full px-4 py-2 border rounded resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white"
-            />
-            {errors.scopeOfWork && (
-              <p className="text-red-600 text-sm">
-                {errors.scopeOfWork.message}
-              </p>
-            )}
           </div>
 
           <button className="w-full bg-black text-white py-2 rounded hover:bg-gray-800 transition">

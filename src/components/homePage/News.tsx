@@ -25,7 +25,7 @@ export function NewsSection() {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const res = await fetch("https://api.egysmart.org/api/news", {
+        const res = await fetch("http://localhost:4002/api/technologys", {
           cache: "no-store",
         });
 

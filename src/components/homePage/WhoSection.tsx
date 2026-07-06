@@ -17,7 +17,7 @@ const t=useTranslations("HomePage")
           </p>
       </div>
       <div className="w-[30%]">
-        <Image width={500} height={500} src="/home/about.jpg" className="w-full" alt="about image"/>
+        <Image width={500} height={500} src="/home/about.png" className="w-full" alt="about image"/>
       </div>
     </div>
   );
