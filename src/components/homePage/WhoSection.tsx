@@ -6,7 +6,7 @@ export function WhoSection() {
 const t=useTranslations("HomePage")
   return (
     <div
-      className="flex items-start justify-between gap-10 p-[var(--sectionPadding)] max-[650px]:flex-col"
+      className="flex items-start justify-between gap-10 p-[var(--sectionPadding)] max-[650px]:flex-col max-[650px]:items-center"
       id="first"
     >
       <div className="w-[60%] max-[650px]:w-full">
@@ -16,7 +16,7 @@ const t=useTranslations("HomePage")
             {t("about")}
           </p>
       </div>
-      <div className="w-[30%]">
+      <div className="w-[30%] max-[650px]:w-[80%]">
         <Image width={500} height={500} src="/home/about.png" className="w-full" alt="about image"/>
       </div>
     </div>

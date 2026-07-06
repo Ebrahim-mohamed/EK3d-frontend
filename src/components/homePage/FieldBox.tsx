@@ -1,11 +1,11 @@
 import Image from "next/image";
 
 export function FieldBox({head,des,img,num}:{head:string,des:string,img:string,num:number}){
-    return <div className={` items-start py-12 justify-between gap-12 flex ${num % 2===0?" ":" flex-row-reverse "}`}>
-        <div>
-        <h1 className="text-white  text-[2.5rem] mb-8 font-semibold">{head}</h1>
-        <p className="text-white  text-[1.5rem] font-normal">{des}</p>
+    return <div className={`relative items-start justify-between flex flex-col overflow-hidden rounded-2xl group min-h-[25rem] `}>
+        <Image alt="field image" width={500} height={500} className="w-full h-full object-cover rounded-2xl absolute inset-0" src={`/home/${img}.jpg`} />
+        <div className="absolute inset-0 bg-black/50 rounded-2xl"></div>
+        <div className="relative z-10 flex items-center justify-center w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <h1 className="text-white text-[2.5rem] font-semibold text-center">{head}</h1>
         </div>
-        <Image alt="field image" width={500} height={500} className="w-full rounded-2xl max-w-[35rem]" src={`/home/${img}.jpg`} />
     </div>
 }

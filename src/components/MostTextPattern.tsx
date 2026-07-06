@@ -20,7 +20,7 @@ export function MostTextPattern({
   return (
     <div className="flex flex-col  gap-4">
       <p
-        className={`text-[1rem] font-medium text-[#CD2735] ${isCenter && " text-center "}`}
+        className={`text-[1rem] font-medium text-[#CD2735] max-[700px]:text-center ${isCenter && " text-center "}`}
       >
         &#x2014; {redText}
       </p>

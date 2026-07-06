@@ -15,7 +15,7 @@ export function FieldsSection() {
       />
       
       <div className="flex flex-col gap-4 w-full mt-10">
-        <div className="flex flex-col  gap-4 ">
+        <div className="grid grid-cols-2 max-[600px]:grid-cols-1  gap-4 ">
           {Array.from({ length: 8 }).map((_, i) => (
   <FieldBox
   head={t(`fHead${i}`)}

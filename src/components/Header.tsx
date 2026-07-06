@@ -58,6 +58,7 @@ export function Header() {
           {links.map((l) => (
             <HeaderLink link={l.to} name={l.name} key={l.name} fun={toggle} />
           ))}
+        <LanguageSwitcher />
         </div>
       </div>
     </div>

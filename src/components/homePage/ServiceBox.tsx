@@ -24,7 +24,7 @@ export function ServiceBox({
          bg-cover bg-center bg-no-repeat"
       ></div>
       {/* <div className="z-50 absolute top-2 right-4 text-[1.5rem]">&#x2197;</div> */}
-      <h1 className="z-50 text-[3rem] font-medium">{title}</h1>
+      <h1 className="z-50 text-[2.5rem] font-medium">{title}</h1>
     </Link>
   );
 }

@@ -16,10 +16,10 @@
       "des":"For us, 3D printing isn't just about production — it's about innovation. We bring integrity and creative excellence to every phase, from initial design to final realization ",
       
       "serv0":"3D design",
-      "servCat0":"design",
       "serv1":"3D scanning",
-      "servCat1":"scanning",
       "serv2":"3D printing",
+      "servCat0":"design",
+      "servCat1":"scanning",
       "servCat2":"printing"
     },
     "fields":{
