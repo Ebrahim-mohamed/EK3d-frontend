@@ -46,7 +46,7 @@ function ImageSlider({ images, title }: { images: string[]; title: string }) {
   if (images.length === 1) {
     return (
       <img
-        src={`http://localhost:4002/uploads/${images[0]}`}
+        src={`https://ek3dprints.com/uploads/${images[0]}`}
         alt={title}
         className="w-full h-full object-cover"
       />
@@ -67,7 +67,7 @@ function ImageSlider({ images, title }: { images: string[]; title: string }) {
     <div className="relative w-full h-full group overflow-hidden">
       {/* Image */}
       <img
-        src={`http://localhost:4002/uploads/${images[current]}`}
+        src={`https://ek3dprints.com/uploads/${images[current]}`}
         alt={`${title} ${current + 1}`}
         className="w-full h-full object-cover transition-opacity duration-300"
       />
@@ -163,7 +163,7 @@ export default function ProjectsTab() {
   useEffect(() => {
     const loadProjects = async () => {
       try {
-        const res = await fetch("http://localhost:4002/api/projects");
+        const res = await fetch("https://ek3dprints.com/api/projects");
         if (!res.ok) throw new Error("Failed to fetch projects");
         const data = await res.json();
         setProjects(data);
@@ -192,7 +192,7 @@ export default function ProjectsTab() {
 
     if (editingProject) {
       const res = await fetch(
-        `http://localhost:4002/api/projects/${editingProject._id}`,
+        `https://ek3dprints.com/api/projects/${editingProject._id}`,
         { method: "PUT", body: formData }
       );
       const updated = await res.json();
@@ -200,7 +200,7 @@ export default function ProjectsTab() {
         prev.map((p) => (p._id === updated._id ? updated : p))
       );
     } else {
-      const res = await fetch("http://localhost:4002/api/projects", {
+      const res = await fetch("https://ek3dprints.com/api/projects", {
         method: "POST",
         body: formData,
       });
@@ -216,7 +216,7 @@ export default function ProjectsTab() {
   /* ---------- DELETE ---------- */
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this project?")) return;
-    await fetch(`http://localhost:4002/api/projects/${id}`, {
+    await fetch(`https://ek3dprints.com/api/projects/${id}`, {
       method: "DELETE",
     });
     setProjects((prev) => prev.filter((p) => p._id !== id));

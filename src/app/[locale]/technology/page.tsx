@@ -23,7 +23,7 @@ export default function Technology() {
   useEffect(() => {
     async function loadTechnology() {
       try {
-        const res = await fetch("http://localhost:4002/api/technology");
+        const res = await fetch("https://ek3dprints.com/api/technology");
 
         if (!res.ok) {
           throw new Error("Failed to fetch technology");

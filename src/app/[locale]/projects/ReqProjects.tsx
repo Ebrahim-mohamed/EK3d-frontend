@@ -33,7 +33,7 @@ function resolveServiceKind(cat: string): string | undefined {
 }
 
 async function getProjects() {
-  const res = await fetch("http://localhost:4002/api/projects", {
+  const res = await fetch("https://ek3dprints.com/api/projects", {
     cache: "no-store",
   });
   if (!res.ok) throw new Error("Failed to fetch projects");

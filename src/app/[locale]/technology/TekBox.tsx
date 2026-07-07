@@ -11,7 +11,7 @@ type TekBoxProps = {
   img: string;
 };
 
-const API_URL = "http://localhost:4002";
+const API_URL = "https://ek3dprints.com";
 
 export function TekBox({
   titleAr,

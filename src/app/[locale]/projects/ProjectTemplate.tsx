@@ -24,7 +24,7 @@ export function ProjectTemplate({
   images: string[];
   num: number;
 }) {
-  const baseUrl = "http://localhost:4002/uploads/";
+  const baseUrl = "https://ek3dprints.com/uploads/";
   const locale = useLocale();
   const isArabic = locale === "ar";
 

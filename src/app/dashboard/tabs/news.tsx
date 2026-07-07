@@ -79,7 +79,7 @@ export default function TechnologyTab() {
   useEffect(() => {
     const loadTechnology = async () => {
       try {
-        const res = await fetch("http://localhost:4002/api/technology");
+        const res = await fetch("https://ek3dprints.com/api/technology");
         if (!res.ok) throw new Error("Failed to fetch technology");
         const data = await res.json();
         setTechnology(data);
@@ -105,7 +105,7 @@ export default function TechnologyTab() {
     if (editingTechnology) {
       // Edit
       const res = await fetch(
-        `http://localhost:4002/api/technology/${editingTechnology._id}`,
+        `https://ek3dprints.com/api/technology/${editingTechnology._id}`,
         {
           method: "PUT",
           body: formData,
@@ -117,7 +117,7 @@ export default function TechnologyTab() {
       );
     } else {
       // Add
-      const res = await fetch("http://localhost:4002/api/technology", {
+      const res = await fetch("https://ek3dprints.com/api/technology", {
         method: "POST",
         body: formData,
       });
@@ -134,7 +134,7 @@ export default function TechnologyTab() {
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this technology item?"))
       return;
-    await fetch(`http://localhost:4002/api/technology/${id}`, {
+    await fetch(`https://ek3dprints.com/api/technology/${id}`, {
       method: "DELETE",
     });
     setTechnology((prev) => prev.filter((n) => n._id !== id));
@@ -186,7 +186,7 @@ export default function TechnologyTab() {
             <div className="w-full md:w-48 h-32 md:h-auto overflow-hidden flex-shrink-0">
               {item.image && (
                 <img
-                  src={`http://localhost:4002/uploads/${item.image}`}
+                  src={`https://ek3dprints.com/uploads/${item.image}`}
                   alt="Technology"
                   className="w-full h-full object-cover"
                 />

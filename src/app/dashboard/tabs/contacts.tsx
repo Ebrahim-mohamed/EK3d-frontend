@@ -22,7 +22,7 @@ export default function ContactsTab() {
   useEffect(() => {
     (async () => {
       try {
-        const res = await fetch("http://localhost:4002/api/contacts");
+        const res = await fetch("https://ek3dprints.com/api/contacts");
         if (!res.ok) throw new Error("Failed to fetch contacts");
         const data = await res.json();
         setContacts(data);
@@ -38,7 +38,7 @@ export default function ContactsTab() {
   const markAsSeen = async (id: string) => {
     try {
       const res = await fetch(
-        `http://localhost:4002/api/contacts/${id}/seen`,
+        `https://ek3dprints.com/api/contacts/${id}/seen`,
         {
           method: "PATCH",
         },
@@ -63,7 +63,7 @@ export default function ContactsTab() {
   /* ================= DELETE ================= */
   const deleteContact = async (id: string) => {
     try {
-      await fetch(`http://localhost:4002/api/contacts/${id}`, {
+      await fetch(`https://ek3dprints.com/api/contacts/${id}`, {
         method: "DELETE",
       });
       setContacts((prev) => prev.filter((c) => c._id !== id));

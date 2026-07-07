@@ -35,7 +35,7 @@ export function Form() {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:4002/api/contacts", {
+      const res = await fetch("https://ek3dprints.com/api/contacts", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
