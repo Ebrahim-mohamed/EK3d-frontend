@@ -137,8 +137,8 @@
   "title":"Technology"
 },
 "Footer": {
-  "description": "EK3DPrints specializes in modern engineering, focusing on analysis, design, and innovation in contemporary construction. Founded in 2015, our team is committed to consistently delivering high-quality, innovative, and safe projects on time.",
-
+  "description": "As a leader in Egypt's 3D technology, we specialize in two interconnected pillars: advanced 3D printing solutions and exceptional 3D-printed products. We provide businesses and creators with the complete toolkit, from high-performance printers and tools to expert, on-demand manufacturing, ensuring quality and innovation at every layer.",
+"connect":"Connect",
   "copyright": "©2026 EK3DPrints. All rights reserved.",
 
   "groups": {
@@ -148,6 +148,8 @@
   },
 
   "links": {
+    "home":"Home",
+    "technology":"Technology",
     "about": "About Us",
     "collaborations": "Collaboration Programs",
     "contact": "Contact Us",

@@ -10,28 +10,28 @@ export function Footer() {
   const t = useTranslations("Footer");
 
   const firstLinks = [
-    { key: "company", title: true, to: "community" },
+    // { key: "company", title: true, to: "community" },
+    { key: "home", to: "/" },
     { key: "about", to: "about" },
     { key: "collaborations", to: "collaboration" },
+    { key: "technology", to: "technology" },
     { key: "contact", to: "contact" },
   ];
 
-  const thirdLinks = [
-    { key: "connect", title: true, to: "contact" },
-  ];
+  
 
   const social = [
     {
       name: "facebook",
-      to: "https://www.facebook.com/share/19jqUgPwUL/",
+      to: "https://www.facebook.com/ek3dprints/",
     },
     {
       name: "instagram",
-      to: "https://www.instagram.com/egysmart_es?igsh=bXk5ZzhlYWJsNGIw",
+      to: "https://www.instagram.com/ek3dprints/",
     },
     {
       name: "linkedin",
-      to: "https://www.linkedin.com/company/egysmart-4-modern-engineering/",
+      to: "https://www.linkedin.com/company/ek3dprints/",
     },
   ];
 
@@ -73,15 +73,7 @@ export function Footer() {
           </div>
 
           <div className="flex flex-col gap-6 max-[800px]:gap-4">
-            {thirdLinks.map((link) => (
-              <FooterLink
-                key={link.key}
-                name={t(`groups.${link.key}`)}
-                to={link.to}
-                title
-              />
-            ))}
-
+            <p className="text-[#277FCD] text-[1.25rem] font-bold mb-4">{t(`connect`)}</p>
             <div className="flex gap-6">
               {social.map((link) => (
                 <FooterLink

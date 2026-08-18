@@ -16,7 +16,7 @@ const t=useTranslations("HomePage")
             {t("about")}
           </p>
       </div>
-      <div className="w-[30%] max-[650px]:w-[80%]">
+      <div className="w-[32%] max-[650px]:w-[80%]">
         <Image width={500} height={500} src="/home/about.png" className="w-full" alt="about image"/>
       </div>
     </div>
