@@ -12,6 +12,7 @@ const internships = [
       "programTwoOption4",
       "programTwoOption5",
     ],
+    img:"col1"
   },
   {
     title: "programThreeTitle",
@@ -23,10 +24,12 @@ const internships = [
       "programThreeOption4",
  
     ],
+    img:"col2"
   },
   {
     title: "programFourTitle",
     des: "programFourPra",
+    img:"col3"
     
   },
   
@@ -44,6 +47,7 @@ export function InternshipsSection() {
       <div className="grid grid-cols-2 gap-4 max-[900px]:grid-cols-1">
         {internships.map((internship) => (
           <InternshipBox
+          img={internship.img}
             points={internship.point}
             des={t(internship.des)}
             title={t(internship.title)}
