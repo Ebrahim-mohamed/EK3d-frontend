@@ -62,12 +62,12 @@ export function Footer() {
               <FooterLink
                 key={link.key}
                 name={
-                  link.title
-                    ? t(`groups.${link.key}`)
-                    : t(`links.${link.key}`)
+                  
+                  
+                     t(`links.${link.key}`)
                 }
                 to={link.to}
-                title={link.title}
+                
               />
             ))}
           </div>

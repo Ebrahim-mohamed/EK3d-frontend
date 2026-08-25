@@ -1,3 +1,4 @@
+import { useLocale } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -5,15 +6,14 @@ type FooterLinkProps = {
   name: string;
   to: string;
   social?: boolean;
-  title?: boolean;
 };
 
 export function FooterLink({
   name,
   to,
   social = false,
-  title = false,
 }: FooterLinkProps) {
+  const locale=useLocale()
   if (social) {
     return (
       <Link
@@ -34,11 +34,11 @@ export function FooterLink({
 
   return (
     <Link
-      href={`/${to}`}
+      href={`/${locale}/${to}`}
       className={
-        title
-          ? "text-[#277FCD] text-[1.25rem] font-bold mb-4 max-[800px]:mb-0"
-          : "text-white text-[1rem] font-[325]"
+        
+          
+           "text-white text-[1rem] font-[325]"
       }
     >
       {name}
