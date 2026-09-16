@@ -15,9 +15,9 @@ export function VandMBox({
         <Image
           width={500}
           height={500}
-          src={`/about/${img}.webp`}
+          src={`/about/${img}.png`}
           alt="image"
-          className="w-full aspect-[122/41] "
+          className="w-full aspect-[16/9] "
         />
         <div
           className="absolute top-0 left-0 w-full h-full  
