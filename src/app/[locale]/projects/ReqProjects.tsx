@@ -114,7 +114,7 @@ export async function ReqProject({
   return (
     <div>
       <Hero
-        page={`${heroTitle}`}
+        page={`${cat}`}
         title={heroTitle}
         pra={`A Curated Selection of Our ${heroTitle} Project Landmarks`}
       />
