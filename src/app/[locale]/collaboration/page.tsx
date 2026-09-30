@@ -2,6 +2,7 @@ import { BlackSection } from "@/components/communityPage/BlackSection";
 import { InternshipsSection } from "@/components/communityPage/InternshipsSection";
 import { JobsSection } from "@/components/communityPage/JobSection";
 import { Hero } from "@/components/Hero";
+import { FieldsSection } from "@/components/homePage/FieldsSection";
 import { useTranslations } from "next-intl";
 
 export default function Collaboration() {
@@ -15,7 +16,7 @@ export default function Collaboration() {
       />
       {/* <JobsSection /> */}
       {/* <BlackSection /> */}
-      <InternshipsSection />
+      <FieldsSection />
     </div>
   );
 }

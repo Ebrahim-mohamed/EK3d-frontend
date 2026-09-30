@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 import { MostTextPattern } from "../MostTextPattern";
 import { InternshipBox } from "./InternshipBox";
+
 const internships = [
   {
     title: "programTwoTitle",
@@ -12,7 +13,7 @@ const internships = [
       "programTwoOption4",
       "programTwoOption5",
     ],
-    img:"col1"
+    img: "col1",
   },
   {
     title: "programThreeTitle",
@@ -22,35 +23,36 @@ const internships = [
       "programThreeOption2",
       "programThreeOption3",
       "programThreeOption4",
- 
     ],
-    img:"col2"
+    img: "col2",
   },
   {
     title: "programFourTitle",
     des: "programFourPra",
-    img:"col3"
-    
+    img: "col3",
   },
-  
 ];
+
 export function InternshipsSection() {
-  const t=useTranslations("CollaborationPage")
+  const t = useTranslations("CollaborationPage");
+
   return (
-    <div className="p-[var(--sectionPadding)]  bg-black flex flex-col items-center justify-center gap-8">
+    <div className="p-[var(--sectionPadding)] bg-[#0A0A0A] flex flex-col items-center justify-center gap-8">
       <MostTextPattern
         isCenter
         moreWidth
         redText={t("SmallTitle")}
         whiteText={t("title")}
       />
-      <div className="grid grid-cols-2 gap-4 max-[900px]:grid-cols-1">
-        {internships.map((internship) => (
+
+      <div className="flex flex-col gap-8 w-full">
+        {internships.map((internship, i) => (
           <InternshipBox
-          img={internship.img}
+            img={internship.img}
             points={internship.point}
             des={t(internship.des)}
             title={t(internship.title)}
+            num={i}
             key={internship.des}
           />
         ))}

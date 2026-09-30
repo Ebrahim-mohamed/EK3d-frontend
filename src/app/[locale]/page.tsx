@@ -8,6 +8,7 @@ import { NewsSection } from "@/components/homePage/News";
 import { ProjectsSection } from "@/components/homePage/ProjectsSection";
 import { getTranslations } from "next-intl/server";
 import { FieldsSection } from "@/components/homePage/FieldsSection";
+import { InternshipsSection } from "@/components/communityPage/InternshipsSection";
 
 export default async function Home() {
   const t = await getTranslations("HomePage");
@@ -23,7 +24,7 @@ export default async function Home() {
       <WhoSection />
       {/* <NumbersSection /> */}
       <ServicesSection />
-      <FieldsSection />
+      <InternshipsSection/>
       {/* <ClientsSection /> */}
       {/* <ProjectsSection /> */}
       {/* <NewsSection /> */}

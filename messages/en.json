@@ -2,7 +2,7 @@
   "tabs":{
 "home":"Home",
 "about":"About Us",
-"collaborations":"Collaborations",
+"collaborations":"Fields",
 "products":"Products",
 "technology":"Technology",
 "contact":"Contact us"
@@ -22,29 +22,39 @@
       "servCat1":"scanning",
       "servCat2":"printing"
     },
-    "fields":{
-      "smallHead":"OUR FIELDS",
-      "head":"3D printing is applicable to these fields",
-      "fHead0":"Interior Design & Decoration",
-      "field0":"Discover custom-made pieces for media production and bring your unique ideas to life.",
-      "fHead1":"Media Production",
-      "field1":"Transform your interiors with unique, one-of-a-kind designs that add style and personality to every space.",
-      "fHead2":"Manufacturing",
-      "field2":"Spare Parts - Jigs & Fixtures – Prototyping - End-use parts - Custom machine parts",
-      "fHead3":"Gadgets",
-      "field3":"Great events stand out through creativity and innovation. Create unique, custom-made pieces with us and give your event an experience that leaves a lasting impression.",
-      "fHead4":"Event Organizing",
-      "field4":"We don't just create spare parts. We manufacture complete solutions, from simple components to fully assembled machines.",
-      "fHead5":"Advertising",
-      "field5":"Trends come through creativity. Create unignorable and unforgettable advertising displays and promotional tools with us to make your brand stand out from the competition.",
-      "fHead6":"Tourism",
-      "field6":"Create something worth sharing. Design unique attractions with us that draw attention, inspire photos, create unforgettable memories, and turn your brand into a social media trend.",
-      "fHead7":"Arts",
-      "field7":"Art is limitless creativity. Bring your ideas to life with designs that turn imagination into reality."
-    }
+    "fields": {
+  "smallHead": "OUR FIELDS",
+  "head": "3D printing is applicable to these fields",
+
+  "fHead0": "Interior Design & Decoration",
+  "field0": "From decorative pieces and custom furniture components to unique architectural details and functional prototypes, we help interior designers turn creative ideas into real, tangible solutions with the freedom to create shapes, details, and designs beyond traditional manufacturing.",
+
+  "fHead1": "Media Production",
+  "field1": "Don’t stop your creativity. Create the distinctive pieces that bring your location, set, or production to life. From unique props and set pieces to custom visual elements, turn your ideas into tangible creations that make your production stand out.",
+
+  "fHead2": "Manufacturing",
+  "field2": "Enhance your manufacturing process with 3D printing solutions for rapid prototyping, functional parts, custom components, and production tools. From digital designs to physical products, we help you reduce development time, test ideas faster, and produce complex designs with greater flexibility and efficiency.",
+
+  "fHead3": "Gadgets",
+  "field3": "Turn everyday needs into smart, practical creations. From customized organizers and holders to useful accessories and unique everyday gadgets, 3D printing gives you the freedom to create solutions designed around the way you live and work. Create it, customize it, and make everyday life a little easier.",
+
+  "fHead4": "Event Organizing",
+  "field4": "Make your event stand out. Create unique props, decorations, branding elements, giveaways, and custom installations that turn your event concept into something people can see, experience, and remember. With 3D printing, your event doesn’t have to look like anything that came before it.",
+
+  "fHead5": "Advertising",
+  "field5": "Not every advertisement belongs on a screen. Create tangible brand experiences through 3D-printed displays, promotional objects, product replicas, branded installations, and attention-grabbing campaign elements. Give your brand something people can see, touch, and remember.",
+
+  "fHead6": "Tourism",
+  "field6": "Turn places, landmarks, and stories into experiences people can take with them. Create detailed replicas of landmarks, unique souvenirs, interactive models, and custom pieces that capture the identity of a destination and give visitors a memorable connection to the places they discover.",
+
+  "fHead7": "Arts",
+  "field7": "When imagination has no limits, neither should the way you create. Explore new forms, textures, structures, and dimensions through 3D printing. Create sculptures, installations, artistic objects, and one-of-a-kind pieces that transform your ideas into physical art. Your imagination is the starting point. There are no limits to where it can take you.",
+
+  "cta": "If you work in any of these fields—or any other industry—and want to create something truly unique of your own, get in touch with us today."
+}
   },
   "CollaborationPage":{
-    "title":"Our Collaboration Programs",
+    "title":"Our Fields",
     "SmallTitle":"Collaboration Programs",
     "programOptions":"Program Options:",
     "programOneTitle":"3D Printing House",
